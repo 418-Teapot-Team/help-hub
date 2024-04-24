@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1>Home page</h1>
+    <h1>Husky works!</h1>
   </main>
 </template>
 <script setup></script>
