@@ -8,7 +8,7 @@ export default {
       },
       // All used colors should be declared here!
       colors: {
-        primary: 'TODO: add primary color!', // Example!
+        primary: '#2EC4B6', // Example!
       },
     },
   },
