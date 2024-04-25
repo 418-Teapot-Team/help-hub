@@ -13,15 +13,10 @@
         </ul>
         <!-- Display two column lists when screen is small -->
         <div class="flex justify-between sm:hidden">
-          <ul class="flex flex-col items-center justify-center text-white">
-            <li v-for="(link, index) in firstColumn" :key="'firstColumn-' + index" class="mb-2">
-              <router-link :to="link.url" class="mx-5 hover:underline">{{
-                link.label
-              }}</router-link>
-            </li>
-          </ul>
-          <ul class="flex flex-col items-center justify-center text-white">
-            <li v-for="(link, index) in secondColumn" :key="'secondColumn-' + index" class="mb-2">
+          <ul
+            class="grid grid-cols-2 gap-x-9 gap-y-3 flex-wrap items-center justify-center md:justify-end text-white"
+          >
+            <li v-for="(link, index) in footerLinks" :key="index">
               <router-link :to="link.url" class="mx-5 hover:underline">{{
                 link.label
               }}</router-link>
@@ -38,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 const footerLinks = ref([
   { label: 'Propositions', url: '/' },
@@ -46,8 +41,4 @@ const footerLinks = ref([
   { label: 'Volunteers', url: '/' },
   { label: 'Volunteers', url: '/' },
 ]);
-
-const halfIndex = Math.ceil(footerLinks.value.length / 2);
-const firstColumn = computed(() => footerLinks.value.slice(0, halfIndex));
-const secondColumn = computed(() => footerLinks.value.slice(halfIndex));
 </script>
