@@ -8,7 +8,8 @@ export default {
       },
       // All used colors should be declared here!
       colors: {
-        primary: '#2EC4B6', // Example!
+        primary: '#2EC4B6',
+        'dark-text': '#232A42',
       },
     },
   },
