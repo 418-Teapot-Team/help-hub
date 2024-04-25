@@ -1,7 +1,7 @@
 <template>
+  <SomeStats />
   <Welcome />
   <HowWeWork />
-  <SomeStats />
 </template>
 
 <script setup>
