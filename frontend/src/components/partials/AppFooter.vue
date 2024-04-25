@@ -4,6 +4,14 @@
       <div class="flex items-center justify-center">
         <ul class="flex flex-wrap items-center justify-center dark:text-white">
           <li>
+            <span class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse me-5">
+              <img src="" alt="Our img is gonna be here" class="h-8" />
+              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+                >Teapot418</span
+              >
+            </span>
+          </li>
+          <li>
             <a href="#" class="me-4 hover:underline md:me-6">Propositions</a>
           </li>
           <li>
