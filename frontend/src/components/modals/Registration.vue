@@ -1,13 +1,13 @@
 <template>
   <Teleport to="#app">
     <div
-      class="fixed top-0 left-0 right-0 bottom-0 z-10 bg-black/20 flex justify-center items-center max-h-screen overflow-y-auto"
+      class="fixed top-0 left-0 right-0 bottom-0 z-10 bg-black/20 flex justify-center items-center"
       @click="closeModal"
     >
       <vee-form
         :validation-schema="schema"
         @submit="onSubmit"
-        class="relative z-20 w-[320px] xs:w-[380px] sm:w-[420px] md:w-[480px] lg:w-[540px] h-fit bg-white shadow-sm px-6 py-6 flex flex-col justify-start items-center gap-y-6"
+        class="relative z-20 w-[320px] xs:w-[380px] sm:w-[420px] md:w-[480px] lg:w-[540px] h-fit bg-white shadow-sm px-6 py-6 flex flex-col justify-start items-center gap-y-6 max-h-screen overflow-y-auto"
         @click.stop
       >
         <div @click="closeModal" class="absolute right-4 top-4 cursor-pointer hover:stroke-primary">
