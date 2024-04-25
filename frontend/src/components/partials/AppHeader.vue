@@ -48,7 +48,7 @@
 <script setup>
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
 import { ref } from 'vue';
-import BurgerIconVue from '../icons/BurgerIcon.vue';
+import BurgerIconVue from '@/components/icons/BurgerIcon.vue';
 
 const headerLinks = ref([
   { label: 'Волонтерам', url: '/' },

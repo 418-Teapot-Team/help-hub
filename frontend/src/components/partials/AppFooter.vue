@@ -1,10 +1,10 @@
 <template>
-  <footer class="fixed bottom-0 left-0 w-full bg-simple-gray mt-4">
+  <footer class="absolute bottom-0 left-0 w-full bg-simple-gray mt-4">
     <div class="p-4 md:py-8">
       <div
         class="flex flex-col md:flex-row items-center justify-center md:justify-between lg:justify-center"
       >
-        <img src="" alt="Our img is gonna be here" class="h-8 text-white" />
+        <img src="/images/HandToHandLogoLight.webp" alt="" class="h-8 text-white" />
         <!-- Display single column list when screen is not small -->
         <ul class="flex-wrap items-center justify-center md:justify-end text-white sm:flex hidden">
           <li v-for="(link, index) in footerLinks" :key="index">
