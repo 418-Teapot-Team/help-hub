@@ -1,46 +1,76 @@
 <template>
-  <footer class="fixed bottom-0 left-0 w-full shadow bg-gray-800 mb-4">
+  <footer class="fixed bottom-0 left-0 w-full shadow bg-gray-800 mt-4">
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-      <div class="flex items-center justify-center">
-        <ul class="flex flex-wrap items-center justify-center dark:text-white">
-          <li>
-            <span class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse me-5">
-              <img src="" alt="Our img is gonna be here" class="h-8" />
-              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-                >Teapot418</span
-              >
-            </span>
-          </li>
+      <div
+        class="flex flex-col md:flex-row items-center justify-center md:justify-between lg:justify-center"
+      >
+        <div
+          class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse md:mb-0 me-5 text-white"
+        >
+          <img src="" alt="Our img is gonna be here" class="h-8" />
+        </div>
+        <!-- Display single column list when screen is not small -->
+        <ul
+          v-if="!isSmallScreen"
+          class="flex flex-wrap items-center justify-center md:justify-end text-white"
+        >
           <li v-for="(link, index) in footerLinks" :key="index">
-            <router-link :to="link.url" class="me-4 hover:underline md:me-6">{{
-              link.label
-            }}</router-link>
+            <router-link :to="link.url" class="mx-5 hover:underline">{{ link.label }}</router-link>
           </li>
         </ul>
+        <!-- Display two column lists when screen is small -->
+        <template v-if="isSmallScreen">
+          <div class="flex justify-between">
+            <ul class="flex flex-col items-center justify-center text-white">
+              <li
+                v-for="(link, index) in firstColumn"
+                :key="'firstColumn-' + index"
+                class="mb-2 sm:mb-0"
+              >
+                <router-link :to="link.url" class="mx-5 hover:underline">{{
+                  link.label
+                }}</router-link>
+              </li>
+            </ul>
+            <ul class="flex flex-col items-center justify-center text-white">
+              <li
+                v-for="(link, index) in secondColumn"
+                :key="'secondColumn-' + index"
+                class="mb-2 sm:mb-0"
+              >
+                <router-link :to="link.url" class="mx-5 hover:underline">{{
+                  link.label
+                }}</router-link>
+              </li>
+            </ul>
+          </div>
+        </template>
       </div>
       <hr class="my-6 mx-auto border-gray-700 lg:my-8" />
-      <span class="block text-sm text-gray-400 sm:text-center"
+      <span class="block text-sm text-gray-400 text-center"
         >© 2024 Teapot418. All Rights Reserved.</span
       >
     </div>
   </footer>
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { ref, computed } from 'vue';
 
-export default {
-  setup() {
-    const footerLinks = ref([
-      { label: 'Propositions', url: '/' },
-      { label: 'Volunteers', url: '/' },
-      { label: 'Volunteers', url: '/' },
-      { label: 'Volunteers', url: '/' },
-    ]);
+const footerLinks = ref([
+  { label: 'Propositions', url: '/' },
+  { label: 'Volunteers', url: '/' },
+  { label: 'Volunteers', url: '/' },
+  { label: 'Volunteers', url: '/' },
+]);
 
-    return {
-      footerLinks,
-    };
-  },
-};
+const isSmallScreen = ref(window.innerWidth < 640);
+
+window.addEventListener('resize', () => {
+  isSmallScreen.value = window.innerWidth < 640;
+});
+
+const halfIndex = Math.ceil(footerLinks.value.length / 2);
+const firstColumn = computed(() => footerLinks.value.slice(0, halfIndex));
+const secondColumn = computed(() => footerLinks.value.slice(halfIndex));
 </script>
