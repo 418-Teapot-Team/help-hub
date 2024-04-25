@@ -1,14 +1,12 @@
 <template>
   <AppHeaderVue />
-  <div class="w-full h-10 flex justify-center"></div>
-
   <main>
     <router-view />
-    <AppFooter />
   </main>
+  <AppFooter />
 </template>
 
 <script setup>
 import AppFooter from '@/components/partials/AppFooter.vue';
-import AppHeaderVue from '@/components/AppHeader.vue';
+import AppHeaderVue from '@/components/partials/AppHeader.vue';
 </script>
