@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 defineProps({
   text: String,
   type: {
@@ -32,11 +30,11 @@ defineProps({
   },
 });
 
-const { emit } = defineEmits(['onClick']);
+const emit = defineEmits(['onClick']);
 
-const onClick = () => {
+function onClick() {
   emit('onClick');
-};
+}
 </script>
 <script>
 export default {

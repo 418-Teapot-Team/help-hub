@@ -34,19 +34,17 @@ export default {
     configure({
       generateMessage: (ctx) => {
         const messages = {
-          required: `The field ${ctx.field} is required.`,
-          min: `The field ${ctx.field} is too short.`,
-          max: `The field ${ctx.field} is too long.`,
-          alpha_spaces: `The field ${ctx.field} may only contain alphabetical characters and spaces.`,
-          email: `The field ${ctx.field} must be a valid email.`,
+          required: `*Це поле обов'язкове`,
+          min: `*Недостаньо символів`,
+          max: `*Перевищено максимальну к-кість символів`,
+          alpha_spaces: `*Це поле може містити лише букви та пробіли`,
+          email: `*Неправильний формат емейлу`,
           min_value: `The field ${ctx.field} is too low.`,
           max_value: `The field ${ctx.field} is too high.`,
-          passwords_mismatch: `The passwords don't match`,
+          passwords_mismatch: `*Паролі не співпадають`,
         };
 
-        const message = messages[ctx.rule.name]
-          ? messages[ctx.rule.name]
-          : `The field ${ctx.field} is invalid`;
+        const message = messages[ctx.rule.name] ? messages[ctx.rule.name] : `*Поле некоректне`;
 
         return message;
       },
