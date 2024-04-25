@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import StatCard from './stats-components/StatCard.vue';
+import StatCard from '../stats-components/StatCard.vue';
 import { ref } from 'vue';
 
 const cards = ref([
