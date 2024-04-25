@@ -52,7 +52,6 @@ import AppButton from '@/components/atoms/buttons/AppButton.vue';
 import { ref } from 'vue';
 import BurgerIconVue from '../icons/BurgerIcon.vue';
 import { useAuthStore } from '@/stores/auth';
-
 const authStore = useAuthStore();
 
 const headerLinks = ref([

@@ -1,6 +1,6 @@
 <template>
   <AppHeaderVue />
-  <main>
+  <main class="min-h-screen">
     <router-view />
   </main>
   <AppFooter />
