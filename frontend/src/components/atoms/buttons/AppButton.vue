@@ -1,11 +1,10 @@
 <template>
   <button
-    :class="[
-      'w-full h-full p-2 font-semibold text-xl',
-      buttonStyle === 'default'
-        ? 'bg-primary bg-opacity-85 text-white'
-        : 'bg-transparent border border-primary text-primary',
-    ]"
+    :class="{
+      'w-full h-full p-2 font-semibold text-xl': true,
+      'bg-primary bg-opacity-85 text-white': buttonStyle === 'default',
+      'bg-transparent border border-primary text-primary': buttonStyle === 'outline',
+    }"
     :type="type"
     @click="onClick"
   >
@@ -20,7 +19,7 @@ const props = defineProps({
   text: String,
   type: {
     type: String,
-    default: 'primary',
+    default: 'button',
   },
   buttonStyle: {
     type: String,
