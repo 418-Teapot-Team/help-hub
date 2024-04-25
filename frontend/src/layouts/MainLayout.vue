@@ -1,23 +1,21 @@
 <template>
   <main>
     <h1>Main!</h1>
-    <AppButton :type="buttonType" :text="buttonText" />
+    <AppButton :text="'Primary'" />
+    <AppButton :text="'Secondary'" :buttonStyle="'outline'" />
     <router-view />
   </main>
 </template>
 
-<script>
+<script setup>
+import { defineProps } from 'vue';
 import AppButton from '../components/atoms/buttons/AppButton.vue';
-export default {
-  name: 'MainLayout',
-  components: {
-    AppButton,
+
+const props = defineProps({
+  text: String,
+  buttonStyle: {
+    type: String,
+    default: '',
   },
-  data() {
-    return {
-      buttonType: 'primary',
-      buttonText: 'Реєстрація',
-    };
-  },
-};
+});
 </script>
