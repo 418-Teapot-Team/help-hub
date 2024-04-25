@@ -11,10 +11,9 @@ export default {
         primary: '#2EC4B6',
         'simple-gray': '#4A4A4A',
         'dark-text': '#232A42',
+        'light-text': '#696E7E',
         'section-secondary': '#F4F6FC',
-      },
-      screens: {
-        xs: '475px',
+        'primary-light': '#CBF3F0',
       },
     },
   },
