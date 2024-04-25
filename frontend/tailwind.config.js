@@ -8,9 +8,9 @@ export default {
       },
       // All used colors should be declared here!
       colors: {
-        primary: 'TODO: add primary color!', // Example!
+        primary: '#2EC4B6',
         'simple-gray': '#4A4A4A',
-        // bg-primary:
+        'dark-text': '#232A42',
       },
     },
   },

@@ -1,0 +1,45 @@
+<template>
+  <button
+    :class="{
+      'w-fit h-fit py-2 px-4 text-xl': true,
+      'bg-primary bg-opacity-85 text-white': buttonStyle === 'default',
+      'bg-transparent border-2 border-primary text-primary': buttonStyle === 'outline',
+      'font-semibold': isBold,
+    }"
+    :type="type"
+    @click="onClick"
+  >
+    {{ text }}
+  </button>
+</template>
+
+<script setup>
+import { defineProps, defineEmits } from 'vue';
+
+defineProps({
+  text: String,
+  type: {
+    type: String,
+    default: 'button',
+  },
+  buttonStyle: {
+    type: String,
+    default: 'default',
+  },
+  isBold: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const { emit } = defineEmits(['onClick']);
+
+const onClick = () => {
+  emit('onClick');
+};
+</script>
+<script>
+export default {
+  name: 'AppButton',
+};
+</script>
