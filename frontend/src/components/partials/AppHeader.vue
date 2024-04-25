@@ -16,8 +16,10 @@
     </ul>
     <div>
       <div class="md:flex hidden justify-center items-center gap-x-6">
-        <button class="px-3 py-2"><span class="font-semibold hover:underline">Вхід</span></button>
-        <AppButton text="Реєстрація" isBold />
+        <button class="px-3 py-2" @click="openLoginPopup">
+          <span class="font-semibold hover:underline">Вхід</span>
+        </button>
+        <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
       </div>
       <BurgerIconVue @click="toggleDropdown" class="object-contain w-10 md:hidden" />
       <div v-if="isDropdownOpen" class="flex flex-col">
@@ -34,10 +36,10 @@
             </router-link>
           </li>
           <div class="p-4 flex justify-end w-full">
-            <button class="px-3 py-2">
+            <button class="px-3 py-2" @click="openLoginPopup">
               <span class="font-semibold hover:underline">Вхід</span>
             </button>
-            <AppButton text="Реєстрація" isBold />
+            <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
           </div>
         </ul>
       </div>
@@ -49,6 +51,9 @@
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
 import { ref } from 'vue';
 import BurgerIconVue from '../icons/BurgerIcon.vue';
+import { useAuthStore } from '@/stores/auth';
+
+const authStore = useAuthStore();
 
 const headerLinks = ref([
   { label: 'Волонтерам', url: '/' },
@@ -59,4 +64,11 @@ const isDropdownOpen = ref(false);
 const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
+
+function openRegisterPopup() {
+  authStore.setRegisterPopupOpenStatus(true);
+}
+function openLoginPopup() {
+  authStore.setLoginPopupOpenStatus(true);
+}
 </script>
