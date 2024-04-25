@@ -11,40 +11,37 @@
         </div>
         <!-- Display single column list when screen is not small -->
         <ul
-          v-if="!isSmallScreen"
-          class="flex flex-wrap items-center justify-center md:justify-end text-white"
+          class="flex flex-wrap items-center justify-center md:justify-end text-white hidden sm:flex"
         >
           <li v-for="(link, index) in footerLinks" :key="index">
             <router-link :to="link.url" class="mx-5 hover:underline">{{ link.label }}</router-link>
           </li>
         </ul>
         <!-- Display two column lists when screen is small -->
-        <template v-if="isSmallScreen">
-          <div class="flex justify-between">
-            <ul class="flex flex-col items-center justify-center text-white">
-              <li
-                v-for="(link, index) in firstColumn"
-                :key="'firstColumn-' + index"
-                class="mb-2 sm:mb-0"
-              >
-                <router-link :to="link.url" class="mx-5 hover:underline">{{
-                  link.label
-                }}</router-link>
-              </li>
-            </ul>
-            <ul class="flex flex-col items-center justify-center text-white">
-              <li
-                v-for="(link, index) in secondColumn"
-                :key="'secondColumn-' + index"
-                class="mb-2 sm:mb-0"
-              >
-                <router-link :to="link.url" class="mx-5 hover:underline">{{
-                  link.label
-                }}</router-link>
-              </li>
-            </ul>
-          </div>
-        </template>
+        <div class="flex justify-between sm:hidden">
+          <ul class="flex flex-col items-center justify-center text-white">
+            <li
+              v-for="(link, index) in firstColumn"
+              :key="'firstColumn-' + index"
+              class="mb-2 sm:mb-0"
+            >
+              <router-link :to="link.url" class="mx-5 hover:underline">{{
+                link.label
+              }}</router-link>
+            </li>
+          </ul>
+          <ul class="flex flex-col items-center justify-center text-white">
+            <li
+              v-for="(link, index) in secondColumn"
+              :key="'secondColumn-' + index"
+              class="mb-2 sm:mb-0"
+            >
+              <router-link :to="link.url" class="mx-5 hover:underline">{{
+                link.label
+              }}</router-link>
+            </li>
+          </ul>
+        </div>
       </div>
       <hr class="my-6 mx-auto border-gray-700 lg:my-8" />
       <span class="block text-sm text-gray-400 text-center"
@@ -64,13 +61,18 @@ const footerLinks = ref([
   { label: 'Volunteers', url: '/' },
 ]);
 
-const isSmallScreen = ref(window.innerWidth < 640);
-
-window.addEventListener('resize', () => {
-  isSmallScreen.value = window.innerWidth < 640;
-});
-
 const halfIndex = Math.ceil(footerLinks.value.length / 2);
 const firstColumn = computed(() => footerLinks.value.slice(0, halfIndex));
 const secondColumn = computed(() => footerLinks.value.slice(halfIndex));
 </script>
+
+<style scoped>
+@media (min-width: 640px) {
+  .sm\\:hidden {
+    display: none;
+  }
+  .sm\\:flex {
+    display: flex;
+  }
+}
+</style>
