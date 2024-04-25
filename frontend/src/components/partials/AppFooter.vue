@@ -11,17 +11,10 @@
               >
             </span>
           </li>
-          <li>
-            <a href="#" class="me-4 hover:underline md:me-6">Propositions</a>
-          </li>
-          <li>
-            <a href="#" class="me-4 hover:underline md:me-6">Volunteers</a>
-          </li>
-          <li>
-            <a href="#" class="me-4 hover:underline md:me-6">Volunteers</a>
-          </li>
-          <li>
-            <a href="#" class="me-4 hover:underline md:me-6">Volunteers</a>
+          <li v-for="(link, index) in footerLinks" :key="index">
+            <router-link :to="link.url" class="me-4 hover:underline md:me-6">{{
+              link.label
+            }}</router-link>
           </li>
         </ul>
       </div>
@@ -34,7 +27,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-  name: 'AppFooter',
+  setup() {
+    const footerLinks = ref([
+      { label: 'Propositions', url: '/' },
+      { label: 'Volunteers', url: '/' },
+      { label: 'Volunteers', url: '/' },
+      { label: 'Volunteers', url: '/' },
+    ]);
+
+    return {
+      footerLinks,
+    };
+  },
 };
 </script>

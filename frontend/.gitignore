@@ -36,6 +36,7 @@ coverage
 # Lockfiles
 package-lock.json
 yarn.lock
+package-lock.json
 
 # Env files
 .env
