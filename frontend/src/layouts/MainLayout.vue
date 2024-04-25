@@ -9,7 +9,7 @@
 
 <script setup>
 import { defineProps } from 'vue';
-import AppButton from '../components/atoms/buttons/AppButton.vue';
+import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
 const props = defineProps({
   text: String,
