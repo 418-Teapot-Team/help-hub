@@ -15,9 +15,6 @@ export default {
         'section-secondary': '#F4F6FC',
         'primary-light': '#CBF3F0',
       },
-      heights: {
-        'section-height': 'calc(100% - 80px)',
-      },
       screens: {
         xs: '472px',
       },

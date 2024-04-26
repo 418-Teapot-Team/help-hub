@@ -5,7 +5,7 @@
         <span class="text-dark-text text-4xl font-semibold">Як ми працюємо?</span>
       </div>
       <div class="flex w-full justify-center flex-row gap-x-36 xs:items-center py-24">
-        <img class="w-[600px]" src="/images/howWorkImg.webp" alt="" />
+        <img class="w-[600px] md:hidden" src="/images/howWorkImg.webp" alt="" />
         <div
           class="border-l-primary border-l-4 xs:border-l-8 h-[250px] xs:h-[500px] flex flex-col justify-between"
         >
@@ -13,7 +13,7 @@
             <div
               class="flex justify-center items-center text-white rounded-full text-2xl font-semibold bg-primary w-12 h-12 ml-[-26px] xs:w-20 xs:h-20 xs:-ml-11"
             >
-              {{ item.id }}
+              {{ idx + 1 }}
             </div>
             <span class="text-2xl text-dark-text">{{ item.label }}</span>
           </div>
@@ -27,9 +27,9 @@
 import { ref } from 'vue';
 
 const works = ref([
-  { id: 1, label: 'Tak i pracuemo' },
-  { id: 2, label: 'Pracuemo azh pilyka letit' },
-  { id: 3, label: 'Tak tezh pracuemo' },
-  { id: 4, label: 'Jak tilki ne pracuemo...' },
+  { label: 'Tak i pracuemo' },
+  { label: 'Pracuemo azh pilyka letit' },
+  { label: 'Tak tezh pracuemo' },
+  { label: 'Jak tilki ne pracuemo...' },
 ]);
 </script>
