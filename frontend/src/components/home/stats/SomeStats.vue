@@ -23,8 +23,8 @@ import StatCard from '@/components/home/stats/StatCard.vue';
 import { ref } from 'vue';
 
 const cards = ref([
-  { label: 'bahato', stat: '1278', image: '/images/Resume.png' },
-  { label: 'bilshe', stat: '12738', image: '/images/HandUp.png' },
-  { label: 'dohyja', stat: '9097298', image: '/images/Success.png' },
+  { label: 'Заявок', stat: '10564', image: '/images/Resume.png' },
+  { label: 'Волонтерів', stat: '1298', image: '/images/HandUp.png' },
+  { label: 'Виконаних завдань', stat: '8754', image: '/images/Success.png' },
 ]);
 </script>
