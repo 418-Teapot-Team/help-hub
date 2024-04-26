@@ -15,6 +15,9 @@ export default {
         'section-secondary': '#F4F6FC',
         'primary-light': '#CBF3F0',
       },
+      screens: {
+        xs: '472px',
+      },
     },
   },
   plugins: [],
