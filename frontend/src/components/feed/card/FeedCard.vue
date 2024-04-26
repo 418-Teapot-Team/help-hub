@@ -1,0 +1,38 @@
+<template>
+  <section class="mx-9 bg-white rounded-sm shadow-md max-w-3xl">
+    <div v-for="(volunteer, index) in volunteers" :key="index" class="flex gap-6 p-5">
+      <div class="md:flex-shrink-0 self-start">
+        <img class="object-contain w-16" :src="volunteer.image" />
+      </div>
+      <div class="text-start text-wrap">
+        <p class="font-semibold text-3xl">{{ volunteer.name }}</p>
+        <p>Зіроньки</p>
+        <p class="opacity-75 font-semibold">{{ volunteer.location }}</p>
+        <div class="mb-3 mt-2">
+          <Tag v-for="(tag, index) in volunteer.tags" :key="index" :text="tag" />
+        </div>
+
+        <p class="opacity-75 font-semibold">{{ volunteer.description }}</p>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import Tag from '@/components/feed/card/Tag.vue';
+
+const volunteers = ref([
+  {
+    image: '/images/Profile.png',
+    name: 'Mykola Balii',
+    stat: 5,
+    location: 'Хмельницька обл. м. Хмельницький',
+    tags: ['водіння', 'програмування'],
+    description:
+      'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
+  },
+]);
+</script>
+
+<style lang="scss" scoped></style>
