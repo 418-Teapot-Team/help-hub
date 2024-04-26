@@ -1,5 +1,5 @@
 <template>
-  <div class="py-9 bg-section-secondary">
+  <section class="py-9 bg-section-secondary">
     <div class="flex mx-auto font-semibold text-3xl justify-center py-4 bg-inherit">
       <span>Трішки статистики</span>
     </div>
@@ -15,7 +15,7 @@
         тому ми сподіваємося, що наведена статистика буде невпинно зростати.</span
       >
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
