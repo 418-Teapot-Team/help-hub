@@ -22,7 +22,7 @@
       <BurgerIconVue @click="toggleDropdown" class="object-contain w-10 md:hidden" />
       <div v-if="isDropdownOpen" class="flex flex-col">
         <ul
-          class="absolute w-full flex flex-col items-start top-20 right-0 bg-white shadow-md md:hidden"
+          class="absolute z-10 w-full flex flex-col items-start top-20 right-0 bg-white shadow-md md:hidden"
         >
           <li
             v-for="(item, idx) in headerLinks"
