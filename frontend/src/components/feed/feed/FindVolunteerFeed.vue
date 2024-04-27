@@ -28,7 +28,7 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
 import { useFindFeedStore } from '@/stores/findFeed.js';
-import FeedCard from '@/components/feed/feed/card/feedCard.vue';
+import FeedCard from '@/components/feed/feed/card/FeedCard.vue';
 import SearchBar from '@/components/feed/feed/SearchBar.vue';
 
 const store = useFindFeedStore();
