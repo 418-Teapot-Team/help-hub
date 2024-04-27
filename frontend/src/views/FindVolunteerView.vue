@@ -1,7 +1,10 @@
 <template>
-  <FeedCard />
+  <section class="flex justify-center">
+    <!-- TODO: insert filters here  -->
+    <FindVolunteerFeed />
+  </section>
 </template>
 
 <script setup>
-import FeedCard from '@/components/feed/card/FeedCard.vue';
+import FindVolunteerFeed from '@/components/feed/FindVolunteerFeed.vue';
 </script>

@@ -1,6 +1,6 @@
 <template>
-  <section class="mx-9 bg-white rounded-sm shadow-md max-w-3xl">
-    <div v-for="(volunteer, index) in volunteers" :key="index" class="flex gap-6 p-5">
+  <section class="m-9 bg-white shadow-md max-w-4xl">
+    <div class="flex gap-6 p-5">
       <div class="md:flex-shrink-0 self-start">
         <img class="object-contain w-16" :src="volunteer.image" />
       </div>
@@ -22,17 +22,14 @@
 import { ref } from 'vue';
 import Tag from '@/components/feed/card/Tag.vue';
 
-const volunteers = ref([
-  {
-    image: '/images/Profile.png',
-    name: 'Mykola Balii',
-    stat: 5,
-    location: 'Хмельницька обл. м. Хмельницький',
-    tags: ['водіння', 'програмування'],
-    description:
-      'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
+const props = defineProps({
+  data: {
+    type: Object,
+    require: true,
   },
-]);
+});
+
+const volunteer = ref(props.data);
 </script>
 
 <style lang="scss" scoped></style>
