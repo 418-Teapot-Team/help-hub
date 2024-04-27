@@ -9,6 +9,7 @@
 </template>
 
 <script setup>
+
 import { useAuthStore } from '@/stores/auth';
 import AppFooter from '@/components/partials/AppFooter.vue';
 import AppHeaderVue from '@/components/partials/AppHeader.vue';
@@ -20,4 +21,5 @@ const auhtStore = useAuthStore();
 
 const isRegisterPopupOpen = computed(() => auhtStore.isRegisterPopupOpen);
 const isLoginPopupOpen = computed(() => auhtStore.isLoginPopupOpen);
+
 </script>
