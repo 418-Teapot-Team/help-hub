@@ -14,24 +14,27 @@
 </template>
 
 <script setup>
-// defineProps,
-import { defineEmits } from 'vue';
+import { defineProps, defineEmits, ref } from 'vue';
 
-// const props = defineProps({
-//   text: String,
-//   type: {
-//     type: String,
-//     default: 'button',
-//   },
-//   buttonStyle: {
-//     type: String,
-//     default: 'default',
-//   },
-//   isBold: {
-//     type: Boolean,
-//     default: false,
-//   },
-// });
+const props = defineProps({
+  text: String,
+  type: {
+    type: String,
+    default: 'button',
+  },
+  buttonStyle: {
+    type: String,
+    default: 'default',
+  },
+  isBold: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const text = ref(props.text);
+const buttonStyle = ref(props.text);
+const isBold = ref(props.text);
 
 const emit = defineEmits(['onClick']);
 
