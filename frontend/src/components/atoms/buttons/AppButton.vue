@@ -32,7 +32,6 @@ defineProps({
   },
 });
 
-
 const emit = defineEmits(['onClick']);
 
 function onClick() {
