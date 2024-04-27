@@ -1,6 +1,11 @@
 <template>
-  <main>
-    <h1>Husky works!</h1>
-  </main>
+  <Welcome />
+  <HowWeWork />
+  <SomeStats />
 </template>
-<script setup></script>
+
+<script setup>
+import Welcome from '@/components/home/Welcome.vue';
+import HowWeWork from '@/components/home/howWeWork/HowWeWork.vue';
+import SomeStats from '@/components/home/stats/SomeStats.vue';
+</script>

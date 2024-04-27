@@ -1,9 +1,10 @@
 <template>
   <button
     :class="{
-      'w-full h-full p-2 font-semibold text-xl': true,
+      'w-fit h-fit py-2 px-4 text-xl hover:bg-simple-gray transition ease-out duration-200': true,
       'bg-primary bg-opacity-85 text-white': buttonStyle === 'default',
-      'bg-transparent border border-primary text-primary': buttonStyle === 'outline',
+      'bg-transparent border-2 border-solid border-primary text-primary': buttonStyle === 'outline',
+      'font-semibold': isBold
     }"
     :type="type"
     @click="onClick"
@@ -13,6 +14,7 @@
 </template>
 
 <script setup>
+
 import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
@@ -25,13 +27,18 @@ const props = defineProps({
     type: String,
     default: 'default',
   },
+  isBold: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const { emit } = defineEmits(['onClick']);
+const emit = defineEmits(['onClick']);
 
-const onClick = () => {
+function onClick() {
   emit('onClick');
-};
+}
+
 </script>
 <script>
 export default {

@@ -1,6 +1,7 @@
 <template>
   <main>
-    Empty!
     <router-view />
   </main>
 </template>
+
+<script setup></script>

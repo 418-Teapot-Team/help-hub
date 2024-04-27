@@ -5,6 +5,7 @@ __pycache__/
 *.pyd
 
 # Virtual Environment
+.venv/
 venv/
 env/
 ENV/
@@ -44,4 +45,3 @@ Thumbs.db
 
 # Environment configuration files
 .env
-

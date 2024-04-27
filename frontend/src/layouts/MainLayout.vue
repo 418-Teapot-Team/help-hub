@@ -1,21 +1,25 @@
 <template>
+  <AppHeaderVue />
   <main>
-    <h1>Main!</h1>
-    <AppButton :text="'Primary'" />
-    <AppButton :text="'Secondary'" :buttonStyle="'outline'" />
     <router-view />
   </main>
+  <AppFooter />
+  <Registration v-if="isRegisterPopupOpen" />
+  <Login v-if="isLoginPopupOpen" />
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
-const props = defineProps({
-  text: String,
-  buttonStyle: {
-    type: String,
-    default: '',
-  },
-});
+import { useAuthStore } from '@/stores/auth';
+import AppFooter from '@/components/partials/AppFooter.vue';
+import AppHeaderVue from '@/components/partials/AppHeader.vue';
+import Registration from '@/components/modals/Registration.vue';
+import Login from '@/components/modals/Login.vue';
+import { computed } from 'vue';
+
+const auhtStore = useAuthStore();
+
+const isRegisterPopupOpen = computed(() => auhtStore.isRegisterPopupOpen);
+const isLoginPopupOpen = computed(() => auhtStore.isLoginPopupOpen);
+
 </script>

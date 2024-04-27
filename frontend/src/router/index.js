@@ -9,6 +9,21 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
+    {
+      path: '/profile-edit',
+      name: 'edit_profile',
+      component: () => import('@/views/ProfileView.vue'),
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/views/PublicProfileView.vue'),
+    },
+    {
+      path: '/findvolunteer',
+      name: 'findvolunteer',
+      component: () => import('@/views/FindVolunteerView.vue'),
+    },
   ],
 });
 
