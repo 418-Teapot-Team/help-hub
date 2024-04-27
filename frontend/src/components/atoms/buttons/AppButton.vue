@@ -4,7 +4,7 @@
       'w-fit h-fit py-2 px-4 text-xl hover:bg-simple-gray transition ease-out duration-200': true,
       'bg-primary bg-opacity-85 text-white': buttonStyle === 'default',
       'bg-transparent border-2 border-solid border-primary text-primary': buttonStyle === 'outline',
-      'font-semibold': isBold
+      'font-semibold': isBold,
     }"
     :type="type"
     @click="onClick"
@@ -14,31 +14,30 @@
 </template>
 
 <script setup>
+// defineProps,
+import { defineEmits } from 'vue';
 
-import { defineProps, defineEmits } from 'vue';
-
-const props = defineProps({
-  text: String,
-  type: {
-    type: String,
-    default: 'button',
-  },
-  buttonStyle: {
-    type: String,
-    default: 'default',
-  },
-  isBold: {
-    type: Boolean,
-    default: false,
-  },
-});
+// const props = defineProps({
+//   text: String,
+//   type: {
+//     type: String,
+//     default: 'button',
+//   },
+//   buttonStyle: {
+//     type: String,
+//     default: 'default',
+//   },
+//   isBold: {
+//     type: Boolean,
+//     default: false,
+//   },
+// });
 
 const emit = defineEmits(['onClick']);
 
 function onClick() {
   emit('onClick');
 }
-
 </script>
 <script>
 export default {
