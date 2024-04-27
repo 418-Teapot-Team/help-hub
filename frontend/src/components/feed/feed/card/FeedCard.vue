@@ -1,5 +1,5 @@
 <template>
-  <section class="m-9 bg-white shadow-md max-w-4xl">
+  <section class="m-6 bg-white shadow-md max-w-4xl">
     <div class="flex gap-6 p-5">
       <div class="md:flex-shrink-0 self-start">
         <img class="object-contain w-16" :src="volunteer.image" />
@@ -20,7 +20,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import Tag from '@/components/feed/card/Tag.vue';
+import Tag from '@/components/feed/feed/card/Tag.vue';
 
 const props = defineProps({
   data: {
