@@ -16,7 +16,7 @@
 <script setup>
 import { defineProps, defineEmits, ref } from 'vue';
 
-const props = defineProps({
+defineProps({
   text: String,
   type: {
     type: String,
@@ -32,9 +32,6 @@ const props = defineProps({
   },
 });
 
-const text = ref(props.text);
-const buttonStyle = ref(props.text);
-const isBold = ref(props.text);
 
 const emit = defineEmits(['onClick']);
 
