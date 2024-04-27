@@ -3,19 +3,22 @@
     <div class="bg-section-secondary h-full flex flex-col w-screen">
       <!-- small screen -->
 
-      <div class="w-full h-[calc(100vh-80px)] flex md:hidden justify-center px-10">
-        <div class="bg-white mt-16 h-36 w-[calc(100vw-100px)] sm:w-[600px] rounded-md absolute z-0">
+      <div class="w-full h-[calc(100vh-80px)] flex lg:hidden justify-center px-10">
+        <div
+          class="bg-white mt-12 h-36 w-[calc(100vw-100px)] sm:w-[600px] md:w-[700px] rounded-md absolute z-0"
+        >
           <div
             class="bg-primary-light h-36 w-28 absolute md:block rounded-md -mt-3 ml-3 z-10"
           ></div>
-          <span class="font-bold text-3xl z-20 absolute text-left h-full mt-4 ml-5"
+          <span
+            class="mx-auto font-bold text-md xs:text-xl sm:text-3xl md:text-[31px] z-20 absolute text-left h-full mt-4 md:ml-7 ml-5"
             >Приєднуйтесь до нашої волонтерської платформи та разом з нами допоможіть змінити світ
             на краще!</span
           >
         </div>
-        <div class="w-full mt-56 flex justify-around md:hidden">
+        <div class="w-full mt-52 flex justify-around lg:hidden">
           <div class="w-[600px] flex flex-col items-center">
-            <img class="w-96 md:hidden" src="/images/WelcomeImg.webp" alt="" />
+            <img class="w-96 lg:hidden" src="/images/WelcomeImg.webp" alt="" />
             <div class="flex flex-col gap-2 mb-12 mt-8 items-center">
               <span class="text-light-text text-xl text-center font-semibold"
                 >Допомагайте тим, хто цього потребує, вже сьогодні!</span
@@ -29,15 +32,15 @@
 
       <!-- big screen -->
       <div
-        class="hidden h-[calc(100vh-80px)] xl:flex md:flex xl:justify-evenly md:justify-center items-center xl:px-12 md:px-8 xl:gap-x-10"
+        class="hidden h-[calc(100vh-80px)] flex-col lg:flex-row lg:flex xl:justify-evenly md:justify-center items-center xl:px-12 md:px-16 xl:gap-x-10"
       >
-        <div class="flex flex-col">
+        <div class="flex flex-col lg:-mt-20 xl:-mt-0">
           <div class="bg-white xl:h-60 xl:w-[700px] rounded-xl z-0 md:w-[500px] md:h-48">
             <div
               class="bg-primary-light xl:h-64 xl:w-40 md:h-48 md:w-36 absolute md:block rounded-xl xl:-mt-7 md:-mt-3 ml-3 z-10"
             ></div>
             <span
-              class="font-semibold text-dark-text xl:text-5xl md:text-3xl xl:w-[650px] md:w-[450px] z-20 absolute text-left h-full mt-5 ml-8"
+              class="font-semibold text-dark-text xl:text-5xl md:text-3xl xl:w-[650px] md:w-[450px] z-20 absolute text-left mt-5 ml-8"
               >Приєднуйтесь до нашої волонтерської платформи та разом з нами допоможіть змінити світ
               на краще!</span
             >
@@ -56,7 +59,8 @@
             </div>
           </div>
         </div>
-        <div class="xl:w-[700px] mt-14 md:w-fit">
+        <!-- TODO: fix responsivness -->
+        <div class="lg:w-[700px] mt-14 lg:-mt-20 xl:-mt-0">
           <img class="xl:w-max md:w-[500px]" src="/images/WelcomeImg.webp" alt="" />
         </div>
       </div>

@@ -18,6 +18,7 @@ import { defineProps, computed } from 'vue';
 import AppCheckboxInput from '@/components/atoms/inputs/AppCheckboxInput.vue';
 
 const { title, filters } = defineProps(['title', 'filters']);
+
 const selectedFiltersLength = computed(() => {
   const selectedFilters = filters.filter((item) => item.isSelected);
   return selectedFilters.length;
