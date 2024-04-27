@@ -21,3 +21,12 @@ class VolunteerRepository(UserBaseRepository):
     def get_by_phone(phone: str):
         phone = VolunteerRepository.clear_phone(phone)
         return Volunteer.query.filter_by(phone=phone).first()
+
+    @staticmethod
+    def update(volunteer_id: str, parameters: dict):
+        for param in parameters:
+            if param == "phone":
+                parameters[param] = UserBaseRepository.clear_phone(parameters[param])
+            setattr(Volunteer.query.get(volunteer_id), param, parameters[param])
+        db.session.commit()
+        return Volunteer.query.get(volunteer_id)
