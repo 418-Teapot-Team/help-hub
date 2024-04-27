@@ -5,7 +5,7 @@
         <span class="text-dark-text text-4xl font-semibold">Як ми працюємо?</span>
       </div>
       <div class="flex w-full justify-center flex-row gap-x-36 xs:items-center py-24">
-        <img class="w-[600px] md:hidden" src="/images/howWorkImg.webp" alt="" />
+        <img class="w-[600px] hidden lg:block" src="/images/howWorkImg.webp" alt="" />
         <div
           class="border-l-primary border-l-4 xs:border-l-8 h-[250px] xs:h-[500px] flex flex-col justify-between"
         >
