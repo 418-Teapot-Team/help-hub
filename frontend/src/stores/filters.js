@@ -20,8 +20,14 @@ export const useFiltersStore = defineStore('filters', () => {
   ]);
 
   function resetFilters() {
-    this.cities.forEach((city) => (city.isSelected = false));
-    this.spec.forEach((specialization) => (specialization.isSelected = false));
+    cities.value = cities.value.map((city) => ({
+      ...city,
+      isSelected: false,
+    }));
+    spec.value = spec.value.map((specialization) => ({
+      ...specialization,
+      isSelected: false,
+    }));
   }
   return {
     cities,
