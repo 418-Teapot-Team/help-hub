@@ -1,11 +1,13 @@
 <template>
   <div class="bg-section-secondary w-screen h-screen">
-    <FeedCard />
     <Filters />
+    <div class="flex justify-center">
+      <FindVolunteerFeed />
+    </div>
   </div>
 </template>
 
 <script setup>
-import FeedCard from '@/components/feed/card/FeedCard.vue';
+import FindVolunteerFeed from '@/components/feed/FindVolunteerFeed.vue';
 import Filters from '@/components/feed/filters/Filters.vue';
 </script>
