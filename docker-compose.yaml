@@ -11,6 +11,8 @@ services:
       - SECRET_KEY=${SECRET_KEY}
     build:
       context: backend
+      args:
+        - DOCKER_BUILDKIT=1
       dockerfile: Dockerfile
     ports:
       - 8001:8001
