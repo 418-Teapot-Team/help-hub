@@ -35,7 +35,6 @@ def signin():
     data = request.get_json()
     if data["role"] not in repositories:
         return jsonify(message="Invalid role"), 400
-
     repo = repositories[data["role"]]
     user = repo.get_by_phone(data["phone"])
     if user and check_password_hash(user.password, data["password"]):
