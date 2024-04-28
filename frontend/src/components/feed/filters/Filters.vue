@@ -1,5 +1,5 @@
 <template>
-  <section class="w-[250px] h-[700px] bg-white m-16 ml-28 absolute px-8 py-6">
+  <section class="w-[250px] h-[700px] bg-white px-8 py-6">
     <span class="text-4xl font-semibold">Фільтри</span>
     <FiltersVariants :title="'Міста'" :filters="store.cities" />
     <FiltersVariants :title="'Спеціалізація'" :filters="store.spec" />
