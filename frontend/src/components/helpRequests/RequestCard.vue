@@ -69,7 +69,12 @@
         Apply
       </button>
     </div>
-    <Applicants v-if="isApplicantsShow" @close-modal="isApplicantsShow = false" />
+    <Applicants
+      v-if="isApplicantsShow"
+      @close-modal="isApplicantsShow = false"
+      :responses="data.responses"
+      :id="data.id"
+    />
   </div>
 </template>
 <script setup>

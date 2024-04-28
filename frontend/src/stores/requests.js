@@ -27,8 +27,32 @@ export const useRequestsStore = defineStore('requests', () => {
       $toast.error(e.message);
     }
   }
+
+  async function getMyRequests() {
+    try {
+      const res = await httpClient.get('/requests/my');
+      return res.data;
+    } catch (e) {
+      $toast.error(e.message);
+    }
+  }
+
+  async function approve(app_id, req_id) {
+    try {
+      const res = await httpClient.post('/requests/approve', {
+        volunteer_id: app_id,
+        request_id: req_id,
+      });
+
+      $toast.success(res.data.message);
+    } catch (e) {
+      $toast.error(e.message);
+    }
+  }
   return {
     getRequests,
     apply,
+    getMyRequests,
+    approve,
   };
 });
