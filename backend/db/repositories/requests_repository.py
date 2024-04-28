@@ -45,3 +45,19 @@ class RequestsRepository:
     def get_appliers(request_id: str):
         print("request_id", request_id)
         return RequestResponses.query.filter_by(request_id=request_id, status="PENDING").all()
+
+    @staticmethod
+    def get_by_volunteer_id_request_id(volunteer_id: str, request_id: str):
+        return RequestResponses.query.filter_by(volunteer_id=volunteer_id, request_id=request_id).first()
+
+    @staticmethod
+    def update_request_responses_status(request_resp_id, status):
+        setattr(RequestResponses.query.get(request_resp_id), "status", status)
+        db.session.commit()
+        return RequestResponses.query.get(request_resp_id)
+
+    @staticmethod
+    def update_request_status(request_id, status):
+        setattr(Request.query.get(request_id), "is_active", status)
+        db.session.commit()
+        return Request.query.get(request_id)

@@ -3,7 +3,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 
 from db.repositories import RequestsRepository
 from services.models import UserIdentity, UserRole
-
+from services.models import repositories
 
 requests_bp = Blueprint("request", __name__, url_prefix="/requests")
 
@@ -127,3 +127,24 @@ def my_requests():
             for request in requests
         ]
     )
+
+
+@requests_bp.route("/approve", methods=["POST"])
+def approve():
+    data = request.get_json()
+    volunteer_id = data["volunteer_id"]
+    request_id = data["request_id"]
+    repo = repositories["requests"]
+
+    accepted_request = RequestsRepository.check_if_applied(volunteer_id, request_id)
+    deny_request = RequestsRepository.get_appliers(request_id)
+    for resp in deny_request:
+        repo.update_request_responses_status(resp.id, "DENIED")
+    repo.update_request_responses_status(accepted_request.id, "ACCEPTED")
+    repo.update_request_status(request_id, False)
+    repo = repositories["volunteer"]
+
+    volunteer_data = repo.get_by_id(volunteer_id)
+    closed_requests = volunteer_data.closed_requests + 1
+    repo.update(volunteer_id, {"closed_requests": closed_requests})
+    return jsonify(message="Successfully approved"), 200
