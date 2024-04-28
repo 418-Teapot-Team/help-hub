@@ -2,48 +2,18 @@
   <section class="flex flex-col justify-start mt-20 w-1/2">
     <SearchBar class="sticky top-0" />
     <div class="flex flex-col">
-      <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
-    </div>
-    <div
-      v-if="store.volunteers.length > itemsPerPage"
-      class="flex justify-center gap-2 items-center mt-2"
-    >
-      <AppButton
-        text="Prev"
-        @click="currentPage--"
-        :disabled="currentPage <= 0"
-        class="bg-primary hover:bg-primary-dark text-white py-2 px-4"
-      />
-
-      <div class="font-semibold">Page: {{ currentPage + 1 }} of {{ pageCount }}</div>
-      <AppButton
-        text="Next"
-        @click="currentPage++"
-        :disabled="currentPage >= pageCount - 1"
-        class="bg-primary hover:bg-primary-dark text-white py-2 px-4"
-      />
+      <FeedCard v-for="(volunteer, index) in store.volunteers" :key="index" :data="volunteer" />
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue';
+import { onMounted } from 'vue';
 import { useFindFeedStore } from '@/stores/findFeed.js';
 import FeedCard from '@/components/feed/card/FeedCard.vue';
 import SearchBar from '@/components/feed/SearchBar.vue';
-import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
 const store = useFindFeedStore();
-const itemsPerPage = 4;
-const currentPage = ref(0);
-
-const paginatedVolunteers = computed(() => {
-  const start = currentPage.value * itemsPerPage;
-  const end = start + itemsPerPage;
-  return store.volunteers.slice(start, end);
-});
-
-const pageCount = computed(() => Math.ceil(store.volunteers.length / itemsPerPage));
 
 onMounted(async () => {
   await store.fetchVolunteerData();

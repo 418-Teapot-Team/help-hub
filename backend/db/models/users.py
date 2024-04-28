@@ -35,6 +35,11 @@ class Volunteer(db.Model):
             "image_url": self.image_url,
             "created_at": self.created_at.strftime("%d/%m/%Y"),
             "updated_at": self.updated_at.strftime("%d/%m/%Y"),
+            "telegram": self.telegram,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "twitter": self.twitter,
+            "role": "volunteer",
         }
 
 
@@ -68,4 +73,9 @@ class Requestor(db.Model):
             "image_url": self.image_url,
             "created_at": self.created_at.strftime("%d/%m/%Y"),
             "updated_at": self.updated_at.strftime("%d/%m/%Y"),
+            "telegram": self.telegram,
+            "instagram": self.instagram,
+            "facebook": self.facebook,
+            "twitter": self.twitter,
+            "role": "requestor",
         }
