@@ -6,7 +6,10 @@
       'pt-4': !editable,
     }"
   >
-    <span class="text-xl font-semibold" v-if="editable">Аватар</span>
+    <span class="text-xl font-semibold bg-primary px-2 rounded-full text-white" v-if="!editable">{{
+      role === 'volunteer' ? 'Volunteer' : 'Requestor'
+    }}</span>
+    <span class="text-xl font-semibold" v-else>Avatar</span>
     <div
       class="border rounded-full overflow-hidden w-[150px] h-[150px] flex items-center justify-center bg-white"
     >
@@ -25,6 +28,13 @@ const props = defineProps({
   editable: {
     type: Boolean,
     default: true,
+  },
+  imageUrl: {
+    type: String,
+  },
+  role: {
+    type: String,
+    default: 'requestor',
   },
 });
 

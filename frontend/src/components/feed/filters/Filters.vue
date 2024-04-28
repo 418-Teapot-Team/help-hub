@@ -2,16 +2,16 @@
   <section>
     <div class="hidden sm:block w-[250px] h-[700px] bg-white mt-20 px-8 py-6">
       <span class="text-4xl font-semibold">Фільтри</span>
-      <FiltersVariants :title="'Міста'" :filters="store.cities" />
-      <FiltersVariants :title="'Спеціалізація'" :filters="store.spec" />
+      <FiltersVariants :title="'Міста'" :filters="filters.cities" />
+      <FiltersVariants :title="'Спеціалізація'" :filters="filters.categories" />
       <div class="w-full h-[110px] flex flex-col justify-around items-center mt-4">
-        <AppButton text="Застосувати" isBold class="w-full py-1.5" />
+        <AppButton @on-click="applyFilters" text="Застосувати" isBold class="w-full py-1.5" />
         <AppButton
           text="Скинути"
           isBold
           buttonStyle="outline"
           class="w-full py-[6px]"
-          @click="store.resetFilters"
+          @on-click="clearAllFilters"
         />
       </div>
     </div>
@@ -23,8 +23,8 @@
       />
       <div v-if="isFilterOpen" class="w-full h-full bg-white px-8 py-6">
         <span class="text-4xl font-semibold">Фільтри</span>
-        <FiltersVariants :title="'Міста'" :filters="store.cities" />
-        <FiltersVariants :title="'Спеціалізація'" :filters="store.spec" />
+        <FiltersVariants :title="'Міста'" :filters="filters.cities" />
+        <FiltersVariants :title="'Спеціалізація'" :filters="filters.categories" />
         <div class="w-full h-[110px] flex flex-col justify-around items-center mt-12">
           <AppButton text="Застосувати" isBold class="w-full py-1.5 fixed bottom-[75px]" />
           <AppButton
@@ -32,7 +32,7 @@
             isBold
             buttonStyle="outline"
             class="w-full py-[6px]"
-            @click="store.resetFilters"
+            @on-click="clearAllFilters"
           />
         </div>
       </div>
@@ -46,7 +46,24 @@ import { useFiltersStore } from '@/stores/filters.js';
 import FiltersVariants from '@/components/feed/filters/FiltersVariants.vue';
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
-const store = useFiltersStore();
+defineProps(['filters']);
+
+const emit = defineEmits(['applyFilters']);
+
+const filtersStore = useFiltersStore();
+
+const clearFilterButton = ref(false);
+
+function clearAllFilters() {
+  filtersStore.clearAllFilters();
+  applyFilters();
+  clearFilterButton.value = false;
+}
+
+function applyFilters() {
+  clearFilterButton.value = true;
+  emit('applyFilters');
+}
 
 const isFilterOpen = ref(false);
 const toggleFilter = () => {
