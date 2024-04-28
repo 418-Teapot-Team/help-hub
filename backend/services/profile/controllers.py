@@ -47,8 +47,8 @@ def volunteer_info(id):
             is_verified=user.is_verified,
             description=user.description,
             image_url=user.image_url,
-            created_at=user.created_at,
-            updated_at=user.updated_at,
+            created_at=user.created_at.strftime("%d/%m/%Y"),
+            updated_at=user.updated_at.strftime("%d/%m/%Y"),
         )
 
 
@@ -66,6 +66,6 @@ def requestor_info(id):
             email=user.email,
             description=user.description,
             image_url=user.image_url,
-            created_at=user.created_at,
-            updated_at=user.updated_at,
+            created_at=user.created_at.strftime("%d/%m/%Y"),
+            updated_at=user.updated_at.strftime("%d/%m/%Y"),
         )

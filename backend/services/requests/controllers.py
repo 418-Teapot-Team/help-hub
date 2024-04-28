@@ -40,7 +40,10 @@ def apply_request():
 @requests_bp.route("/all", methods=["GET"])
 def get_all_requests():
 
-    requests = RequestsRepository.get_all()
+    filter_by = request.args.get("filter_by", None)
+    search = request.args.get("search", None)
+
+    requests = RequestsRepository.get_all(filter_by=filter_by, search=search)
     return jsonify(
         [
             {
@@ -50,7 +53,7 @@ def get_all_requests():
                 "category": request.category.name,
                 "city": request.city.name,
                 "is_active": request.is_active,
-                "created_at": request.created_at,
+                "created_at": request.created_at.strftime("%d/%m/%Y"),
                 "requestor": {
                     "id": request.requestor.id,
                     "full_name": request.requestor.full_name,
@@ -81,7 +84,7 @@ def my_requests():
                 "category": request.category.name,
                 "city": request.city.name,
                 "is_active": request.is_active,
-                "created_at": request.created_at,
+                "created_at": request.created_at.strftime("%d/%m/%Y"),
                 "responses": [
                     {
                         "id": response.id,
@@ -93,7 +96,7 @@ def my_requests():
                             "email": response.volunteer.email,
                         },
                         "status": response.status,
-                        "created_at": response.created_at,
+                        "created_at": response.created_at.strftime("%d/%m/%Y"),
                     }
                     for response in request.responses
                 ],
