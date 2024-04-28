@@ -26,6 +26,7 @@ def signup():
             full_name=data["full_name"],
             phone=data["phone"],
             password=generate_password_hash(data["password"]),
+            email=data["email"],
         )
         access_token = create_access_token(
             identity=UserIdentity(user_id=new_user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
@@ -44,7 +45,7 @@ def signin():
         access_token = create_access_token(
             identity=UserIdentity(user_id=user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
         )
-        return jsonify(access_token=access_token)
+        return jsonify(access_token=access_token, message="Successfully signed in!")
     else:
         return jsonify(message="Invalid phone or password"), 401
 
