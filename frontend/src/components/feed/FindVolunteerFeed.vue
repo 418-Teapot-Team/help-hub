@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col justify-start mt-20">
-    <SearchBar />
+    <SearchBar class="sticky top-0" />
     <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
     <div
       v-if="store.volunteers.length > itemsPerPage"
@@ -27,12 +27,12 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
 import { useFindFeedStore } from '@/stores/findFeed.js';
-import FeedCard from '@/components/feed/feed/card/FeedCard.vue';
-import SearchBar from '@/components/feed/feed/SearchBar.vue';
+import FeedCard from '@/components/feed/card/FeedCard.vue';
+import SearchBar from '@/components/feed/SearchBar.vue';
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
 const store = useFindFeedStore();
-const itemsPerPage = 3;
+const itemsPerPage = 4;
 const currentPage = ref(0);
 
 const paginatedVolunteers = computed(() => {
