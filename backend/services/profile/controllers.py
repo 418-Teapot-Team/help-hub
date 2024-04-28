@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from services.models import UserRole, repositories, UserIdentity
+from services.models import repositories, UserIdentity
 
 profile_bp = Blueprint("profile", __name__, url_prefix="/profile")
 
@@ -15,53 +15,18 @@ def me():
     if not user:
         return jsonify(message="Error at getting user"), 400
 
-    common_data = {
-        "user_id": user.id,
-        "full_name": user.full_name,
-        "phone": user.phone,
-        "email": user.email,
-        "description": user.description,
-        "image_url": user.image_url,
-        "created_at": user.created_at,
-    }
-
-    if current_user["role"] == UserRole.VOLUNTEER.value:
-        common_data["closed_requests"] = user.closed_requests
-        common_data["is_verified"] = user.is_verified
-
-    return jsonify(common_data)
+    return jsonify(user.json())
 
 
 @profile_bp.route("/edit", methods=["PUT"])
+@jwt_required()
 def edit():
     current_user: UserIdentity = get_jwt_identity()
     repo = repositories[current_user["role"]]
     data = dict(request.get_json())
     updated_user = repo.update(current_user["user_id"], data)
-    if current_user["role"] == UserRole.REQUESTOR.value:
-        return jsonify(
-            user_id=updated_user.id,
-            full_name=updated_user.full_name,
-            phone=updated_user.phone,
-            email=updated_user.email,
-            description=updated_user.description,
-            image_url=updated_user.image_url,
-            created_at=updated_user.created_at,
-            updated_at=updated_user.updated_at,
-        )
-    elif current_user["role"] == UserRole.VOLUNTEER.value:
-        return jsonify(
-            user_id=updated_user.id,
-            full_name=updated_user.full_name,
-            phone=updated_user.phone,
-            email=updated_user.email,
-            closed_requests=updated_user.closed_requests,
-            is_verified=updated_user.is_verified,
-            description=updated_user.description,
-            image_url=updated_user.image_url,
-            created_at=updated_user.created_at,
-            updated_at=updated_user.updated_at,
-        )
+    if updated_user:
+        return jsonify(message="Successfully updated"), 200
     else:
         return jsonify(message="Error at updating"), 400
 
