@@ -6,47 +6,62 @@ export const useFindFeedStore = defineStore('findFeed', () => {
     {
       image: '/images/Profile.png',
       name: 'Mykola Balii',
-      stat: 5,
       location: 'Хмельницька обл. м. Хмельницький',
-      tags: ['водіння', 'програмування'],
-      description:
-        'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
-    },
-    {
-      image: '/images/Profile.png',
-      name: 'Andrii Balii',
-      stat: 5,
-      location: 'Хмельницька обл. м. Хмельницький',
-      tags: ['водіння', 'програмування'],
-      description:
-        'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
     },
     {
       image: '/images/Profile.png',
       name: 'Mykola Balii',
-      stat: 5,
       location: 'Хмельницька обл. м. Хмельницький',
-      tags: ['водіння', 'програмування'],
-      description:
-        'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
     },
     {
       image: '/images/Profile.png',
       name: 'Mykola Balii',
-      stat: 5,
       location: 'Хмельницька обл. м. Хмельницький',
-      tags: ['водіння', 'програмування'],
-      description:
-        'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
     },
     {
       image: '/images/Profile.png',
       name: 'Mykola Balii',
-      stat: 5,
       location: 'Хмельницька обл. м. Хмельницький',
-      tags: ['водіння', 'програмування'],
-      description:
-        'Маю велике бажання допомогти у сфері розробки веб застосунків. Готовий також бути водієм та займатися перевезенням гуманітарної допомоги',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
     },
   ]);
 

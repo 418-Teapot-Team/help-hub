@@ -6,9 +6,9 @@ from db.models import Volunteer
 class VolunteerRepository(UserBaseRepository):
 
     @staticmethod
-    def create(full_name: str, phone: str, password: str):
+    def create(full_name: str, phone: str, password: str, email: str):
         phone = VolunteerRepository.clear_phone(phone)
-        volunteer = Volunteer(full_name=full_name, phone=phone, password=password)
+        volunteer = Volunteer(full_name=full_name, phone=phone, password=password, email=email)
         db.session.add(volunteer)
         db.session.commit()
         return volunteer
@@ -30,3 +30,12 @@ class VolunteerRepository(UserBaseRepository):
             setattr(Volunteer.query.get(volunteer_id), param, parameters[param])
         db.session.commit()
         return Volunteer.query.get(volunteer_id)
+
+    @staticmethod
+    def get_all(filter_by=None, search=None):
+        query = Volunteer.query
+        if filter_by:
+            query = query.filter_by(**filter_by)
+        if search:
+            query = query.filter((Volunteer.full_name.ilike(f"%{search}%")))
+        return query.all()

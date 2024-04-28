@@ -5,9 +5,9 @@ from db.models import Requestor
 
 class RequestorRepository(UserBaseRepository):
     @staticmethod
-    def create(full_name: str, phone: str, password: str):
+    def create(full_name: str, phone: str, password: str, email: str):
         phone = RequestorRepository.clear_phone(phone)
-        requestor = Requestor(full_name=full_name, phone=phone, password=password)
+        requestor = Requestor(full_name=full_name, phone=phone, password=password, email=email)
         db.session.add(requestor)
         db.session.commit()
         return requestor

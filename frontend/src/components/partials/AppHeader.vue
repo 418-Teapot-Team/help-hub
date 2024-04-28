@@ -1,7 +1,9 @@
 <template>
-  <header class="h-20 px-8 py-2 flex items-center justify-between shadow-md">
+  <header class="h-20 px-4 py-2 flex items-center justify-between shadow-md">
     <div class="flex items-center">
-      <img src="/images/HandToHandLogo.webp" class="object-contain w-20" />
+      <router-link to="/">
+        <img src="/images/HandToHandLogo.webp" class="object-contain w-20" />
+      </router-link>
     </div>
     <ul class="hidden md:flex flex-1 justify-center gap-x-10">
       <li
@@ -21,9 +23,12 @@
         </button>
         <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
       </div>
-      <div :class="logged ? 'hidden md:block' : 'hidden'">
-        Welcome, {{ full_name }}
-        <span v-if="volunteer" class="uppercase font-bold text-light-text">volunteer</span>
+      <div :class="logged ? 'hidden md:flex flex-row items-center gap-x-4' : 'hidden'">
+        <div class="flex flex-col items-center">
+          <span class="font-bold text-white bg-primary p-1 text-center">{{ full_name }} </span>
+          <span v-if="volunteer" class="text-dark-text">Volunteer</span>
+        </div>
+        <img class="w-14" src="/images/Profile.png" alt="" />
       </div>
       <BurgerIconVue @click="toggleDropdown" class="object-contain w-10 md:hidden" />
       <div v-if="isDropdownOpen" class="flex flex-col">
@@ -45,9 +50,9 @@
             </button>
             <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
           </div>
-          <div :class="logged ? 'w-full text-end px-12 pb-2' : 'hidden'">
-            Welcome, {{ full_name }}
-            <span v-if="volunteer" class="uppercase font-bold text-light-text pl-6">volunteer</span>
+          <div :class="logged ? 'w-full text-end px-6 py-4' : 'hidden'">
+            <span class="font-bold text-white bg-primary p-2 text-center">{{ full_name }} </span>
+            <span v-if="volunteer" class="text-dark-text pl-6">Volunteer</span>
           </div>
         </ul>
       </div>
@@ -56,16 +61,19 @@
 </template>
 
 <script setup>
-import AppButton from '@/components/atoms/buttons/AppButton.vue';
 import { ref } from 'vue';
-import BurgerIconVue from '../icons/BurgerIcon.vue';
 import { useAuthStore } from '@/stores/auth';
+import BurgerIconVue from '../icons/BurgerIcon.vue';
 const authStore = useAuthStore();
+import AppButton from '@/components/atoms/buttons/AppButton.vue';
+
+const full_name = ref('Pidaras Pidrilovich');
+const volunteer = ref(true);
+const logged = ref(false);
 
 const headerLinks = ref([
-  { label: 'Волонтерам', url: '/' },
-  { label: 'Замовникам', url: '/' },
-  { label: 'Пропозиції', url: '/' },
+  { label: 'Волонтеру', url: '/requests' },
+  { label: 'Шукачу', url: '/findvolunteer' },
 ]);
 const isDropdownOpen = ref(false);
 const toggleDropdown = () => {
