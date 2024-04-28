@@ -1,11 +1,12 @@
-import Toast, { POSITION } from 'vue-toastification';
-// Import the CSS or use your own!
-import 'vue-toastification/dist/index.css';
+import ToastPlugin from 'vue-toast-notification';
+// Import one of the available themes
+//import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-bootstrap.css';
 
 export default {
   install(app) {
-    app.use(Toast, {
-      position: POSITION.TOP_CENTER,
+    app.use(ToastPlugin, {
+      queue: true,
     });
   },
 };

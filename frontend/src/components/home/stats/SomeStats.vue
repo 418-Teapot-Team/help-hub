@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="bg-section-secondary h-[calc(100vh)] py-1">
-      <div class="flex justify-center mt-32 lg:mt-28 2xl:mt-20">
+      <div class="flex justify-center sm:mt-32 lg:mt-28 2xl:mt-20">
         <span class="text-dark-text text-4xl md:text-5xl font-semibold">Трішки статистики</span>
       </div>
       <div class="flex flex-wrap justify-center bg-inherit mt-9">
@@ -10,8 +10,10 @@
         </div>
       </div>
 
-      <div class="flex mx-auto text-lg justify-center py-4 bg-inherit w-1/2 text-center mt-2">
-        <span
+      <div
+        class="flex mx-auto text-lg justify-center py-4 px-2 bg-inherit sm:w-3/4 text-center sm:mt-2"
+      >
+        <span class="font-semibold text-xl"
           >Hand to Hand створена щоб усі могли знайти допомого або ж проявити себе та допомогти
           іншим, тому ми сподіваємося, що наведена статистика буде невпинно зростати.</span
         >

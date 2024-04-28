@@ -51,9 +51,6 @@ import AppPlainInput from '@/components/atoms/inputs/AppPlainInput.vue';
 import AppPhoneInput from '@/components/atoms/inputs/AppPhoneInput.vue';
 import CloseIcon from '@/components/icons/CloseIcon.vue';
 import AppRadioButton from '@/components/atoms/inputs/AppRadioButton.vue';
-
-const emit = defineEmits(['onSubmit']);
-
 const authStore = useAuthStore();
 
 const accountTypes = ref([
@@ -77,12 +74,15 @@ const schema = reactive({
   password_confirm: 'required|passwords_mismatch:@password',
 });
 
-function onSubmit(values) {
-  emit('onSubmit');
-  console.log({
-    values,
-    account_type: accountType.value,
-  });
+async function onSubmit(values) {
+  const payload = {
+    full_name: values?.name,
+    email: values?.email,
+    phone: values?.phone,
+    password: values?.password,
+    role: accountType.value,
+  };
+  await authStore.signUp(payload);
 }
 
 function closeModal() {

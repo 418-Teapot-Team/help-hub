@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-section-secondary w-screen h-screen">
+  <div class="bg-section-secondary w-full h-screen">
     <div class="flex justify-center h-screen">
       <Filters />
       <FindVolunteerFeed class="overflow-auto pb-10" />

@@ -15,11 +15,15 @@
       </li>
     </ul>
     <div>
-      <div class="md:flex hidden justify-center items-center gap-x-6">
+      <div :class="logged ? 'hidden' : 'md:flex hidden justify-center items-center gap-x-6'">
         <button class="px-3 py-2" @click="openLoginPopup">
           <span class="font-semibold hover:underline">Вхід</span>
         </button>
         <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
+      </div>
+      <div :class="logged ? 'hidden md:block' : 'hidden'">
+        Welcome, {{ full_name }}
+        <span v-if="volunteer" class="uppercase font-bold text-light-text">volunteer</span>
       </div>
       <BurgerIconVue @click="toggleDropdown" class="object-contain w-10 md:hidden" />
       <div v-if="isDropdownOpen" class="flex flex-col">
@@ -35,11 +39,15 @@
               {{ item.label }}
             </router-link>
           </li>
-          <div class="p-4 flex justify-end w-full">
+          <div :class="logged ? 'hidden' : 'p-4 flex justify-end w-full'">
             <button class="px-3 py-2" @click="openLoginPopup">
               <span class="font-semibold hover:underline">Вхід</span>
             </button>
             <AppButton text="Реєстрація" @onClick="openRegisterPopup" isBold />
+          </div>
+          <div :class="logged ? 'w-full text-end px-12 pb-2' : 'hidden'">
+            Welcome, {{ full_name }}
+            <span v-if="volunteer" class="uppercase font-bold text-light-text pl-6">volunteer</span>
           </div>
         </ul>
       </div>

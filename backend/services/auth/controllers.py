@@ -26,6 +26,7 @@ def signup():
             full_name=data["full_name"],
             phone=data["phone"],
             password=generate_password_hash(data["password"]),
+            email=data["email"],
         )
         access_token = create_access_token(
             identity=UserIdentity(user_id=new_user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
@@ -44,7 +45,7 @@ def signin():
         access_token = create_access_token(
             identity=UserIdentity(user_id=user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
         )
-        return jsonify(access_token=access_token)
+        return jsonify(access_token=access_token, message="Successfully signed in!")
     else:
         return jsonify(message="Invalid phone or password"), 401
 
@@ -54,12 +55,6 @@ def signin():
 def whoami():
     current_user: UserIdentity = get_jwt_identity()
     repo = repositories[current_user["role"]]
-    user: Union[Volunteer, Requestor] = repo.get_by_phone(current_user["phone"])
+    user: Union[Volunteer, Requestor] = repo.get_by_id(current_user["user_id"])
 
-    return jsonify(
-        user_id=user.id,
-        full_name=user.full_name,
-        phone=user.phone,
-        role=current_user["role"],
-        email=user.email,
-    )
+    return jsonify(user.json())
