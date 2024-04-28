@@ -6,9 +6,9 @@ from db.models import Volunteer
 class VolunteerRepository(UserBaseRepository):
 
     @staticmethod
-    def create(full_name: str, phone: str, password: str):
+    def create(full_name: str, phone: str, password: str, email: str):
         phone = VolunteerRepository.clear_phone(phone)
-        volunteer = Volunteer(full_name=full_name, phone=phone, password=password)
+        volunteer = Volunteer(full_name=full_name, phone=phone, password=password, email=email)
         db.session.add(volunteer)
         db.session.commit()
         return volunteer

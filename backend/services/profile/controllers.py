@@ -5,6 +5,32 @@ from services.models import repositories, UserIdentity
 profile_bp = Blueprint("profile", __name__, url_prefix="/profile")
 
 
+@profile_bp.route("/me", methods=["GET"])
+@jwt_required()
+def me():
+    current_user: UserIdentity = get_jwt_identity()
+    repo = repositories[current_user["role"]]
+    user = repo.get_by_id(current_user["user_id"])
+
+    if not user:
+        return jsonify(message="Error at getting user"), 400
+
+    return jsonify(user.json())
+
+
+@profile_bp.route("/edit", methods=["PUT"])
+@jwt_required()
+def edit():
+    current_user: UserIdentity = get_jwt_identity()
+    repo = repositories[current_user["role"]]
+    data = dict(request.get_json())
+    updated_user = repo.update(current_user["user_id"], data)
+    if updated_user:
+        return jsonify(message="Successfully updated"), 200
+    else:
+        return jsonify(message="Error at updating"), 400
+
+
 @profile_bp.route("/volunteer/<id>", methods=["GET"])
 def volunteer_info(id):
     data = request.get_json()
@@ -51,38 +77,3 @@ def requestor_info(id):
             created_at=user.created_at,
             updated_at=user.updated_at,
         )
-
-
-@profile_bp.route("/edit/<id>", methods=["PUT"])
-@jwt_required()
-def edit(id):
-    current_user: UserIdentity = get_jwt_identity()
-    repo = repositories[current_user["role"]]
-    data = dict(request.get_json())
-    updated_user = repo.update(id, data)
-    if current_user["role"] == "requestor":
-        return jsonify(
-            user_id=updated_user.id,
-            full_name=updated_user.full_name,
-            phone=updated_user.phone,
-            email=updated_user.email,
-            description=updated_user.description,
-            image_url=updated_user.image_url,
-            created_at=updated_user.created_at,
-            updated_at=updated_user.updated_at,
-        )
-    elif current_user["role"] == "volunteer":
-        return jsonify(
-            user_id=updated_user.id,
-            full_name=updated_user.full_name,
-            phone=updated_user.phone,
-            email=updated_user.email,
-            closed_requests=updated_user.closed_requests,
-            is_verified=updated_user.is_verified,
-            description=updated_user.description,
-            image_url=updated_user.image_url,
-            created_at=updated_user.created_at,
-            updated_at=updated_user.updated_at,
-        )
-    else:
-        return jsonify(message="Error at updating"), 400

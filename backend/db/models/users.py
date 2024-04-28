@@ -23,6 +23,20 @@ class Volunteer(db.Model):
     def __repr__(self):
         return f"<Volunteer {self.first_name} {self.last_name}>"
 
+    def json(self):
+        return {
+            "id": self.id,
+            "full_name": self.full_name,
+            "phone": self.phone,
+            "email": self.email,
+            "closed_requests": self.closed_requests,
+            "is_verified": self.is_verified,
+            "description": self.description,
+            "image_url": self.image_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
+
 
 class Requestor(db.Model):
     __tablename__ = "requestors"
@@ -43,3 +57,15 @@ class Requestor(db.Model):
 
     def __repr__(self):
         return f"<Requestor {self.first_name} {self.last_name}>"
+
+    def json(self):
+        return {
+            "id": self.id,
+            "full_name": self.full_name,
+            "phone": self.phone,
+            "email": self.email,
+            "description": self.description,
+            "image_url": self.image_url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }
