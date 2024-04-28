@@ -40,10 +40,9 @@ def apply_request():
 @requests_bp.route("/all", methods=["GET"])
 def get_all_requests():
 
-    filter_by = request.args.get("filter_by", None)
-    search = request.args.get("search", None)
-
-    requests = RequestsRepository.get_all(filter_by=filter_by, search=search)
+    # cities = request.args.getlist("cities")
+    # requests = RequestsRepository.get_all(filter_by={"city_id": cities})
+    requests = RequestsRepository.get_all()
 
     request_dict = [
         {
