@@ -1,8 +1,8 @@
 <template>
   <div class="bg-section-secondary w-screen h-screen">
-    <Filters />
     <div class="flex justify-center h-screen">
-      <FindVolunteerFeed />
+      <Filters />
+      <FindVolunteerFeed class="overflow-auto pb-10" />
     </div>
   </div>
 </template>

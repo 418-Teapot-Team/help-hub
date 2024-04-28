@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="h-[100vh]">
+    <div class="h-[100vh] overflow-hidden">
       <div class="flex justify-center mt-32 lg:mt-28 2xl:mt-20">
         <span class="text-dark-text text-4xl md:text-5xl font-semibold">Як ми працюємо?</span>
       </div>
