@@ -9,7 +9,6 @@ stat_bp = Blueprint("stat", __name__, url_prefix="/stat")
 def general():
     repo = repositories["volunteer"]
     amount_volunteers = len(repo.get_all())
-
     repo = repositories["requests"]
     amount_requests = len(repo.get_all())
     amount_done_requests = len([request for request in repo.get_all() if request.is_active is False])

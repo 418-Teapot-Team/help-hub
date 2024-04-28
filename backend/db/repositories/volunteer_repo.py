@@ -32,5 +32,10 @@ class VolunteerRepository(UserBaseRepository):
         return Volunteer.query.get(volunteer_id)
 
     @staticmethod
-    def get_all():
-        return Volunteer.query.all()
+    def get_all(filter_by=None, search=None):
+        query = Volunteer.query
+        if filter_by:
+            query = query.filter_by(**filter_by)
+        if search:
+            query = query.filter((Volunteer.full_name.ilike(f"%{search}%")))
+        return query.all()

@@ -24,7 +24,15 @@
 
 <script setup>
 import StatCard from '@/components/home/stats/StatCard.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+// import { useStatsStore } from '@/stores/stats.js';
+
+// const store = useStatsStore();
+
+onMounted(async () => {
+  // await store.fetchStats();
+  // console.log(store.data)
+});
 
 const cards = ref([
   { label: 'Заявок', stat: '10564', image: '/images/Resume.png' },

@@ -1,58 +1,69 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { httpClient } from '@/utils/HttpClient';
 
 export const useFiltersStore = defineStore('filters', () => {
-  const cities = ref([
-    { name: 'Львів', isSelected: false },
-    { name: 'Тернопіль', isSelected: false },
-    { name: 'Хмельницький', isSelected: false },
-    { name: 'Вінниця', isSelected: false },
-    { name: 'Київ', isSelected: false },
-    { name: 'Дніпро', isSelected: false },
-  ]);
-  const spec = ref([
-    { name: 'Дрони', isSelected: false },
-    { name: 'Автомобілі', isSelected: false },
-    { name: 'Електроніка', isSelected: false },
-    { name: 'Лопата', isSelected: false },
-    { name: 'Література', isSelected: false },
-    { name: 'Гроші', isSelected: false },
-  ]);
+  const filters = ref({});
 
-  function resetFilters() {
-    cities.value = cities.value.map((city) => ({
-      ...city,
-      isSelected: false,
-    }));
-    spec.value = spec.value.map((specialization) => ({
-      ...specialization,
-      isSelected: false,
-    }));
-  }
-  async function getFilters() {
-    const { data } = await httpClient.get('');
-    this.cities = data.cities.result;
-    this.spec = data.spec.result;
+  function addFilter(key, value) {
+    if (filters.value[key]) {
+      filters.value[key].push(value);
+    } else {
+      filters.value[key] = [value];
+    }
   }
 
-  async function applyFilters() {
-    const selectedCities = this.cities.filter((city) => city.isSelected).map((city) => city.name);
-    const selectedSpec = this.spec.filter((spec) => spec.isSelected).map((spec) => spec.name);
+  function removeFilter(key, value) {
+    if (!filters.value[key]) {
+      return;
+    }
 
-    const filtersData = {
-      cities: selectedCities,
-      spec: selectedSpec,
-    };
+    const filterIndex = filters.value[key].findIndex((item) => item === value);
+    if (filterIndex > -1) {
+      filters.value[key].splice(filterIndex, 1);
+    }
+  }
 
-    await httpClient.post('', filtersData);
+  function isActive(key, value) {
+    if (!filters.value[key]) {
+      return false;
+    }
+    const filter = filters.value[key].find((item) => item === value);
+    return !!filter;
+  }
+
+  function clearAllFilters() {
+    filters.value = {};
+  }
+
+  function parseFromQuery(query) {
+    let parsedQuery = {};
+    if (query) {
+      Object.keys(query).map((key) => {
+        parsedQuery[key] = JSON.parse(query[key]);
+      });
+    }
+    filters.value = parsedQuery;
+  }
+
+  function getQuerystring() {
+    let querystring = '?';
+    for (let entry of Object.entries(filters.value)) {
+      if (entry[1].length < 1) continue;
+      querystring += `${entry[0]}=`;
+      querystring += encodeURIComponent(JSON.stringify(entry[1]));
+      querystring += '&';
+    }
+
+    return querystring.substring(0, querystring.length - 1);
   }
 
   return {
-    cities,
-    spec,
-    resetFilters,
-    getFilters,
-    applyFilters,
+    filters,
+    addFilter,
+    removeFilter,
+    clearAllFilters,
+    isActive,
+    parseFromQuery,
+    getQuerystring,
   };
 });

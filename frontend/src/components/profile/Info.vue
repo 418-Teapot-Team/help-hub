@@ -7,8 +7,9 @@
     </div>
     <div class="flex justify-center items-center w-full h-full">
       <vee-form
+        v-if="formData"
         :validation-schema="schema"
-        :initial-values="formValues"
+        :initial-values="formData"
         class="w-full flex flex-col justify-between h-full gap-y-6 lg:gap-y-0"
         @submit="onSubmit"
       >
@@ -39,8 +40,24 @@
 import AppPlainInput from '@/components/atoms/inputs/AppPlainInput.vue';
 import AppPhoneInput from '@/components/atoms/inputs/AppPhoneInput.vue';
 import AppButton from '../atoms/buttons/AppButton.vue';
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
+import { useProfileStore } from '@/stores/profile';
 import { ref } from 'vue';
+
+const profileStore = useProfileStore();
+
+const props = defineProps(['profileData']);
+
+const formData = ref(null);
+
+watch(
+  () => props.profileData,
+  (val) => {
+    const data = { ...val };
+    formData.value = { ...data, name: data.full_name };
+    console.log(formData.value);
+  }
+);
 
 const schema = reactive({
   name: 'required|min:3|max:150',
@@ -48,16 +65,7 @@ const schema = reactive({
   phone: 'required|min:10|max:18',
 });
 
-const formValues = ref({
-  name: 'Нестор Петрович',
-  email: 'letopisec@gmail.com',
-  phone: '0677777777',
-  facebook: 'https://www.facebook.com/profile/834294',
-  telegram: '@letopis_top123',
-  instagram: '@from_900_year',
-});
-
 function onSubmit(values) {
-  console.log(values);
+  profileStore.editProfile({ ...values });
 }
 </script>
