@@ -141,4 +141,9 @@ def approve():
         repo.update_request_responses_status(resp.id, "DENIED")
     repo.update_request_responses_status(accepted_request.id, "ACCEPTED")
     repo.update_request_status(request_id, False)
+    repo = repositories["volunteer"]
+
+    volunteer_data = repo.get_by_id(volunteer_id)
+    closed_requests = volunteer_data.closed_requests + 1
+    repo.update(volunteer_id, {"closed_requests": closed_requests})
     return jsonify(message="Successfully approved"), 200
