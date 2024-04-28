@@ -8,11 +8,7 @@ profile_bp = Blueprint("profile", __name__, url_prefix="/profile")
 
 @profile_bp.route("/volunteer/<id>", methods=["GET"])
 def volunteer_info(id):
-    data = request.get_json()
-    if data["role"] not in repositories:
-        return jsonify(message="Invalid role"), 400
-
-    repo = repositories[data["role"]]
+    repo = repositories["volunteer"]
     user = repo.get_by_id(id)
     if user is None:
         return jsonify(message="No volunteer with such id"), 400
@@ -33,11 +29,7 @@ def volunteer_info(id):
 
 @profile_bp.route("/requestor/<id>", methods=["GET"])
 def requestor_info(id):
-    data = request.get_json()
-    if data["role"] not in repositories:
-        return jsonify(message="Invalid role"), 400
-
-    repo = repositories[data["role"]]
+    repo = repositories["requestor"]
     user = repo.get_by_id(id)
     if user is None:
         return jsonify(message="No requestor with such id"), 400
