@@ -17,4 +17,4 @@ jobs:
         DB_USER: ${{ secrets.DB_USER }}
         DB_PSWD: ${{ secrets.DB_PSWD }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      run: docker-compose up -d --force-recreate --build
+      run: docker compose up -d --force-recreate --build
