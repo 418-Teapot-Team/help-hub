@@ -15,6 +15,10 @@ class Volunteer(db.Model):
     image_url = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    telegram = db.Column(db.String(50), nullable=True)
+    instagram = db.Column(db.String(50), nullable=True)
+    facebook = db.Column(db.String(50), nullable=True)
+    twitter = db.Column(db.String(50), nullable=True)
 
     def __repr__(self):
         return f"<Volunteer {self.first_name} {self.last_name}>"
@@ -32,6 +36,10 @@ class Requestor(db.Model):
     image_url = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
+    telegram = db.Column(db.String(50), nullable=True)
+    instagram = db.Column(db.String(50), nullable=True)
+    facebook = db.Column(db.String(50), nullable=True)
+    twitter = db.Column(db.String(50), nullable=True)
 
     def __repr__(self):
         return f"<Requestor {self.first_name} {self.last_name}>"
