@@ -62,7 +62,7 @@
         View applicants
       </button>
       <button
-        v-if="!isMyApply && !isMyRequest && profileData.role === 'volunteer'"
+        v-if="!isMyApply && !isMyRequest && (profileData?.role === 'volunteer' || !profileData)"
         @click="apply"
         class="text-white bg-primary px-4 py-1 shadow-sm hover:bg-simple-gray duration-200"
       >
