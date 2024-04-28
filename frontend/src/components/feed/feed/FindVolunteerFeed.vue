@@ -1,26 +1,25 @@
 <template>
-  <section class="flex flex-col justify-start mt-6">
+  <section class="flex flex-col justify-start mt-20">
     <SearchBar />
     <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
     <div
       v-if="store.volunteers.length > itemsPerPage"
       class="flex justify-center gap-2 items-center mt-2"
     >
-      <button
+      <AppButton
+        text="Prev"
         @click="currentPage--"
         :disabled="currentPage <= 0"
-        class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4"
-      >
-        Prev
-      </button>
+        class="bg-primary hover:bg-primary-dark text-white py-2 px-4"
+      />
+
       <div class="font-semibold">Page: {{ currentPage + 1 }} of {{ pageCount }}</div>
-      <button
+      <AppButton
+        text="Next"
         @click="currentPage++"
         :disabled="currentPage >= pageCount - 1"
-        class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4"
-      >
-        Next
-      </button>
+        class="bg-primary hover:bg-primary-dark text-white py-2 px-4"
+      />
     </div>
   </section>
 </template>
@@ -30,6 +29,7 @@ import { onMounted, ref, computed } from 'vue';
 import { useFindFeedStore } from '@/stores/findFeed.js';
 import FeedCard from '@/components/feed/feed/card/FeedCard.vue';
 import SearchBar from '@/components/feed/feed/SearchBar.vue';
+import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
 const store = useFindFeedStore();
 const itemsPerPage = 3;

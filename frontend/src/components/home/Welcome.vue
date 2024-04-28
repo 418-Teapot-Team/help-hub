@@ -2,7 +2,6 @@
   <section>
     <div class="bg-section-secondary h-full flex flex-col w-screen">
       <!-- small screen -->
-
       <div class="w-full h-[calc(100vh-80px)] flex lg:hidden justify-center px-10">
         <div
           class="bg-white mt-12 h-36 w-[calc(100vw-100px)] sm:w-[600px] md:w-[700px] rounded-md absolute z-0"

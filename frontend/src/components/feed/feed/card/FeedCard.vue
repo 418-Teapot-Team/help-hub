@@ -1,5 +1,5 @@
 <template>
-  <section class="m-6 bg-white shadow-md max-w-4xl">
+  <section class="m-6 bg-white shadow-md max-w-6xl">
     <div class="flex gap-6 p-5">
       <div class="md:flex-shrink-0 self-start">
         <img class="object-contain w-16" :src="volunteer.image" />
