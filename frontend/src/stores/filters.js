@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
+import { httpClient } from '@/utils/HttpClient';
 
 export const useFiltersStore = defineStore('filters', () => {
   const cities = ref([
@@ -29,9 +30,29 @@ export const useFiltersStore = defineStore('filters', () => {
       isSelected: false,
     }));
   }
+  async function getFilters() {
+    const { data } = await httpClient.get('');
+    this.cities = data.cities.result;
+    this.spec = data.spec.result;
+  }
+
+  async function applyFilters() {
+    const selectedCities = this.cities.filter((city) => city.isSelected).map((city) => city.name);
+    const selectedSpec = this.spec.filter((spec) => spec.isSelected).map((spec) => spec.name);
+
+    const filtersData = {
+      cities: selectedCities,
+      spec: selectedSpec,
+    };
+
+    await httpClient.post('', filtersData);
+  }
+
   return {
     cities,
     spec,
     resetFilters,
+    getFilters,
+    applyFilters,
   };
 });

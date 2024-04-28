@@ -16,7 +16,7 @@
         <h1 class="font-semibold text-2xl">Реєстрація</h1>
         <div class="w-full flex flex-col justify-center gap-y-2">
           <AppPlainInput type="text" label="Ім'я*" name="name" />
-          <AppPhoneInput label="Телефон*" />
+          <AppPhoneInput label="Телефон*" name="phone" />
           <AppPlainInput type="email" label="E-mailі*" name="email" />
           <AppPlainInput type="password" label="Пароль*" name="password" />
           <AppPlainInput type="password" label="Підтвердження паролю*" name="password_confirm" />
@@ -77,12 +77,17 @@ const schema = reactive({
   password_confirm: 'required|passwords_mismatch:@password',
 });
 
-function onSubmit(values) {
+async function onSubmit(values) {
   emit('onSubmit');
-  console.log({
-    values,
+  const payload = {
+    full_name: values?.name,
+    email: values?.email,
+    phone: values?.phone,
+    password: values?.password,
     account_type: accountType.value,
-  });
+  };
+  await authStore.register;
+  console.log({ payload });
 }
 
 function closeModal() {

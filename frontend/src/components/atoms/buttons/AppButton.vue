@@ -1,9 +1,10 @@
 <template>
   <button
     :class="{
-      'w-fit h-fit py-2 px-4 text-xl hover:bg-simple-gray transition ease-out duration-200': true,
-      'bg-primary bg-opacity-85 text-white': buttonStyle === 'default',
-      'bg-transparent border-2 border-solid border-primary text-primary': buttonStyle === 'outline',
+      'w-fit h-fit py-2 px-4 text-xl  transition ease-out duration-200': true,
+      'bg-primary hover:bg-simple-gray text-white': buttonStyle === 'default',
+      'bg-transparent border-2 border-solid border-primary text-primary hover:bg-primary hover:text-white':
+        buttonStyle === 'outline',
       'font-semibold': isBold,
     }"
     :type="type"
