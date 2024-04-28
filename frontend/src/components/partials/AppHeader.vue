@@ -1,7 +1,9 @@
 <template>
   <header class="h-20 px-4 py-2 flex items-center justify-between shadow-md">
     <div class="flex items-center">
-      <img src="/images/HandToHandLogo.webp" class="object-contain w-20" />
+      <router-link to="/">
+        <img src="/images/HandToHandLogo.webp" class="object-contain w-20" />
+      </router-link>
     </div>
     <ul class="hidden md:flex flex-1 justify-center gap-x-10">
       <li
@@ -70,9 +72,8 @@ const volunteer = ref(true);
 const logged = ref(false);
 
 const headerLinks = ref([
-  { label: 'Волонтерам', url: '/' },
-  { label: 'Замовникам', url: '/' },
-  { label: 'Пропозиції', url: '/' },
+  { label: 'Волонтеру', url: '/requests' },
+  { label: 'Шукачу', url: '/findvolunteer' },
 ]);
 const isDropdownOpen = ref(false);
 const toggleDropdown = () => {

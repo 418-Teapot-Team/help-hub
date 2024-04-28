@@ -1,7 +1,9 @@
 <template>
-  <section class="flex flex-col justify-start mt-20">
+  <section class="flex flex-col justify-start mt-20 w-1/2">
     <SearchBar class="sticky top-0" />
-    <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
+    <div class="flex flex-col">
+      <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
+    </div>
     <div
       v-if="store.volunteers.length > itemsPerPage"
       class="flex justify-center gap-2 items-center mt-2"
