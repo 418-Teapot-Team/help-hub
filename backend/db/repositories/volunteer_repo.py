@@ -30,3 +30,7 @@ class VolunteerRepository(UserBaseRepository):
             setattr(Volunteer.query.get(volunteer_id), param, parameters[param])
         db.session.commit()
         return Volunteer.query.get(volunteer_id)
+
+    @staticmethod
+    def get_all():
+        return Volunteer.query.all()

@@ -1,5 +1,5 @@
 from typing import TypedDict
-from db.repositories import VolunteerRepository, RequestorRepository, UserBaseRepository
+from db.repositories import VolunteerRepository, RequestorRepository, UserBaseRepository, RequestsRepository
 from enum import Enum
 
 
@@ -11,6 +11,7 @@ class UserRole(Enum):
 repositories: dict[UserRole, UserBaseRepository] = {
     UserRole.VOLUNTEER.value: VolunteerRepository,
     UserRole.REQUESTOR.value: RequestorRepository,
+    "requests": RequestsRepository,
 }
 
 
