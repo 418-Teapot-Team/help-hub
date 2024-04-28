@@ -33,8 +33,8 @@ class Volunteer(db.Model):
             "is_verified": self.is_verified,
             "description": self.description,
             "image_url": self.image_url,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "created_at": self.created_at.strftime("%d/%m/%Y"),
+            "updated_at": self.updated_at.strftime("%d/%m/%Y"),
         }
 
 
@@ -66,6 +66,6 @@ class Requestor(db.Model):
             "email": self.email,
             "description": self.description,
             "image_url": self.image_url,
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
+            "created_at": self.created_at.strftime("%d/%m/%Y"),
+            "updated_at": self.updated_at.strftime("%d/%m/%Y"),
         }

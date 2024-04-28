@@ -40,27 +40,41 @@ def apply_request():
 @requests_bp.route("/all", methods=["GET"])
 def get_all_requests():
 
+    # cities = request.args.getlist("cities")
+    # requests = RequestsRepository.get_all(filter_by={"city_id": cities})
     requests = RequestsRepository.get_all()
-    return jsonify(
-        [
-            {
-                "id": request.id,
-                "title": request.title,
-                "description": request.description,
-                "category": request.category.name,
-                "city": request.city.name,
-                "is_active": request.is_active,
-                "created_at": request.created_at,
-                "requestor": {
-                    "id": request.requestor.id,
-                    "full_name": request.requestor.full_name,
-                    "phone": request.requestor.phone,
-                    "email": request.requestor.email,
-                },
-            }
-            for request in requests
-        ]
-    )
+
+    request_dict = [
+        {
+            "id": request.id,
+            "title": request.title,
+            "description": request.description,
+            "category": request.category.name,
+            "city": request.city.name,
+            "is_active": request.is_active,
+            "created_at": request.created_at,
+            "requestor": {
+                "id": request.requestor.id,
+                "full_name": request.requestor.full_name,
+                "phone": request.requestor.phone,
+                "email": request.requestor.email,
+            },
+        }
+        for request in requests
+    ]
+    categories = {req.category.id: req.category.name for req in requests}
+    cities = {req.city.id: req.city.name for req in requests}
+    filters_dict = {
+        "categories": {
+            "key": "categories",
+            "values": [{"id": key, "name": value} for key, value in categories.items()],
+        },
+        "cities": {
+            "key": "cities",
+            "values": [{"id": key, "name": value} for key, value in cities.items()],
+        },
+    }
+    return jsonify(requests=request_dict, filters=filters_dict)
 
 
 @requests_bp.route("/my", methods=["GET"])
@@ -81,7 +95,7 @@ def my_requests():
                 "category": request.category.name,
                 "city": request.city.name,
                 "is_active": request.is_active,
-                "created_at": request.created_at,
+                "created_at": request.created_at.strftime("%d/%m/%Y"),
                 "responses": [
                     {
                         "id": response.id,
@@ -93,7 +107,7 @@ def my_requests():
                             "email": response.volunteer.email,
                         },
                         "status": response.status,
-                        "created_at": response.created_at,
+                        "created_at": response.created_at.strftime("%d/%m/%Y"),
                     }
                     for response in request.responses
                 ],

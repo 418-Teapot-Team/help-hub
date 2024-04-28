@@ -54,7 +54,8 @@ class HttpClient {
       message: error?.response?.data?.message ? error?.response?.data?.message : error.message,
       status: error.statusText,
     };
-    if (error.status === 403 && error.status === 401) {
+    console.log(error);
+    if (error.response?.status === 403 || error.response?.status === 401) {
       localStorage.removeItem(AUTH_TOKEN_KEY);
     }
     return Promise.reject(errorData);
