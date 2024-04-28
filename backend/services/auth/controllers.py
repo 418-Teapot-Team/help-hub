@@ -1,10 +1,11 @@
+import datetime
 from typing import Union
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from db.models import Requestor, Volunteer
-from services.auth.models import UserIdentity, repositories
+from services.models import repositories, UserIdentity
 
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
@@ -26,7 +27,9 @@ def signup():
             phone=data["phone"],
             password=generate_password_hash(data["password"]),
         )
-        access_token = create_access_token(identity=UserIdentity(phone=new_user.phone, role=data["role"]))
+        access_token = create_access_token(
+            identity=UserIdentity(user_id=new_user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
+        )
         return jsonify(message="Successfully signed up!", access_token=access_token)
 
 
@@ -38,7 +41,9 @@ def signin():
     repo = repositories[data["role"]]
     user = repo.get_by_phone(data["phone"])
     if user and check_password_hash(user.password, data["password"]):
-        access_token = create_access_token(identity=UserIdentity(phone=user.phone, role=data["role"]))
+        access_token = create_access_token(
+            identity=UserIdentity(user_id=user.id, role=data["role"]), expires_delta=datetime.timedelta(days=1)
+        )
         return jsonify(access_token=access_token)
     else:
         return jsonify(message="Invalid phone or password"), 401
