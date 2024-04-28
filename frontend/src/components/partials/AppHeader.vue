@@ -62,10 +62,6 @@ import BurgerIconVue from '../icons/BurgerIcon.vue';
 import { useAuthStore } from '@/stores/auth';
 const authStore = useAuthStore();
 
-const full_name = 'Pidaras';
-const volunteer = true;
-const logged = true;
-
 const headerLinks = ref([
   { label: 'Волонтерам', url: '/' },
   { label: 'Замовникам', url: '/' },

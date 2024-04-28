@@ -16,7 +16,7 @@
         <h1 class="font-semibold text-2xl">Реєстрація</h1>
         <div class="w-full flex flex-col justify-center gap-y-2">
           <AppPlainInput type="text" label="Ім'я*" name="name" />
-          <AppPhoneInput label="Телефон*" name="phone" />
+          <AppPhoneInput label="Телефон*" />
           <AppPlainInput type="email" label="E-mailі*" name="email" />
           <AppPlainInput type="password" label="Пароль*" name="password" />
           <AppPlainInput type="password" label="Підтвердження паролю*" name="password_confirm" />
@@ -51,9 +51,6 @@ import AppPlainInput from '@/components/atoms/inputs/AppPlainInput.vue';
 import AppPhoneInput from '@/components/atoms/inputs/AppPhoneInput.vue';
 import CloseIcon from '@/components/icons/CloseIcon.vue';
 import AppRadioButton from '@/components/atoms/inputs/AppRadioButton.vue';
-
-const emit = defineEmits(['onSubmit']);
-
 const authStore = useAuthStore();
 
 const accountTypes = ref([
@@ -78,16 +75,14 @@ const schema = reactive({
 });
 
 async function onSubmit(values) {
-  emit('onSubmit');
   const payload = {
     full_name: values?.name,
     email: values?.email,
     phone: values?.phone,
     password: values?.password,
-    account_type: accountType.value,
+    role: accountType.value,
   };
-  await authStore.register;
-  console.log({ payload });
+  await authStore.signUp(payload);
 }
 
 function closeModal() {
