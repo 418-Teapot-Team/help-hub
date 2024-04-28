@@ -7,11 +7,6 @@
       <div class="text-start text-wrap">
         <p class="font-semibold text-3xl">{{ volunteer.name }}</p>
         <p class="text-light-text font-semibold">{{ volunteer.location }}</p>
-        <div class="mb-3 mt-2">
-          <Tag v-for="(tag, index) in volunteer.tags" :key="index" :text="tag" />
-        </div>
-
-        <p class="text-light-text font-semibold">{{ volunteer.description }}</p>
       </div>
     </div>
   </section>
@@ -19,7 +14,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import Tag from '@/components/feed/card/Tag.vue';
 
 const props = defineProps({
   data: {

@@ -4,11 +4,29 @@
       <div
         class="flex flex-col md:flex-row items-center justify-center md:justify-between lg:justify-center"
       >
-        <img src="/images/HandToHandLogoLight.webp" alt="" class="h-8 text-white mb-5 md:mb-0" />
-        <!-- Display single column list when screen is not small -->
+        <router-link to="/">
+          <img src="/images/HandToHandLogoLight.webp" alt="" class="h-8 text-white mb-5 md:mb-0" />
+        </router-link>
+        <!-- Display single row list when screen is not small -->
         <ul class="flex-wrap items-center justify-center md:justify-end text-white sm:flex hidden">
           <li v-for="(link, index) in footerLinks" :key="index">
             <router-link :to="link.url" class="mx-5 hover:underline">{{ link.label }}</router-link>
+          </li>
+          <li>
+            <div :class="logged ? 'hidden' : ''">
+              <button class="mx-5" @click="openLoginPopup">
+                <span class="hover:underline">Вхід</span>
+              </button>
+              <button class="mx-5" @click="openRegisterPopup">
+                <span class="hover:underline">Реєстрація</span>
+              </button>
+            </div>
+            <div :class="logged ? 'w-full text-end px-12 pb-2' : 'hidden'">
+              Welcome,
+              <span v-if="volunteer" class="uppercase font-bold text-light-text pl-6"
+                >volunteer</span
+              >
+            </div>
           </li>
         </ul>
         <!-- Display two column lists when screen is small -->
@@ -34,12 +52,19 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+const authStore = useAuthStore();
 
 const footerLinks = ref([
-  { label: 'Пропозиції', url: '/' },
-  { label: 'Волонтерам', url: '/' },
-  { label: 'Замовникам', url: '/' },
-  { label: 'Реєстрація', url: '/' },
-  { label: 'Вхід', url: '/' },
+  { label: 'Волонтеру', url: '/requests' },
+  { label: 'Шукачу', url: '/findvolunteer' },
 ]);
+
+function openRegisterPopup() {
+  authStore.setRegisterPopupOpenStatus(true);
+}
+
+function openLoginPopup() {
+  authStore.setLoginPopupOpenStatus(true);
+}
 </script>
