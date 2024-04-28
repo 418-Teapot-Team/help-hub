@@ -12,22 +12,22 @@
             <span class="text-lg underline">Персональні данні</span>
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Ім'я</span>
-              <span class="text-elipsis">{{ publicData.name }}</span>
+              <span class="text-elipsis">{{ publicData?.full_name }}</span>
             </div>
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Телефон</span>
               <a
-                :href="'tel:' + publicData.phone"
+                :href="'tel:' + publicData?.phone"
                 class="text-elipsis cursor-pointer text-primary"
-                >{{ publicData.phone }}</a
+                >{{ publicData?.phone }}</a
               >
             </div>
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">E-mail</span>
               <a
-                :href="'mailto:' + publicData.email"
+                :href="'mailto:' + publicData?.email"
                 class="text-elipsis cursor-pointer text-primary"
-                >{{ publicData.email }}</a
+                >{{ publicData?.email }}</a
               >
             </div>
           </div>
@@ -36,10 +36,10 @@
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Telegram</span>
               <a
-                v-if="publicData.telegram"
+                v-if="publicData?.telegram"
                 target="_blank"
                 rel="norefferer noopener"
-                :href="'https://t.me/' + publicData.telegram"
+                :href="'https://t.me/' + publicData?.telegram"
                 :class="{
                   'text-primary cursor-pointer': publicData?.telegram?.length,
                 }"
@@ -50,10 +50,10 @@
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Facebook</span>
               <a
-                v-if="publicData.facebook"
+                v-if="publicData?.facebook"
                 target="_blank"
                 rel="norefferer noopener"
-                :href="'http://www.facebook.com/' + publicData.facebook"
+                :href="'http://www.facebook.com/' + publicData?.facebook"
                 :class="{
                   'text-primary cursor-pointer': publicData?.facebook?.length,
                 }"
@@ -64,7 +64,7 @@
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Twitter</span>
               <a
-                v-if="publicData.twitter"
+                v-if="publicData?.twitter"
                 target="_blank"
                 rel="norefferer noopener"
                 :href="'https://twitter.com/' + publicData?.twitter"
@@ -78,7 +78,7 @@
             <div class="flex flex-col justify-center items-start gap-y-1 w-full">
               <span class="font-semibold">Instagram</span>
               <a
-                v-if="publicData.instagram"
+                v-if="publicData?.instagram"
                 target="_blank"
                 rel="norefferer noopener"
                 :href="'http://instagram.com/_u/' + publicData?.instagram"
@@ -97,15 +97,5 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const publicData = ref({
-  name: 'Нестор Петрович',
-  email: 'letopisec@gmail.com',
-  phone: '+38(063)-953-30-33',
-  facebook: 'nestor_letopisec_891',
-  telegram: 'kolia0504',
-  instagram: 'kolia0504',
-  twitter: 'elonmusk',
-});
+defineProps(['publicData']);
 </script>

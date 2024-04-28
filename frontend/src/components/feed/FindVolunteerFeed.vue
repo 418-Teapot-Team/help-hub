@@ -2,7 +2,7 @@
   <section class="flex flex-col justify-start mt-20">
     <SearchBar class="sticky top-0" />
     <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
-    <div
+    <!-- <div
       v-if="store.volunteers.length > itemsPerPage"
       class="flex justify-center gap-2 items-center mt-2"
     >
@@ -20,7 +20,7 @@
         :disabled="currentPage >= pageCount - 1"
         class="bg-primary hover:bg-primary-dark text-white py-2 px-4"
       />
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -29,7 +29,6 @@ import { onMounted, ref, computed } from 'vue';
 import { useFindFeedStore } from '@/stores/findFeed.js';
 import FeedCard from '@/components/feed/card/FeedCard.vue';
 import SearchBar from '@/components/feed/SearchBar.vue';
-import AppButton from '@/components/atoms/buttons/AppButton.vue';
 
 const store = useFindFeedStore();
 const itemsPerPage = 4;
@@ -41,10 +40,8 @@ const paginatedVolunteers = computed(() => {
   return store.volunteers.slice(start, end);
 });
 
-const pageCount = computed(() => Math.ceil(store.volunteers.length / itemsPerPage));
-
-onMounted(async () => {
-  await store.fetchVolunteerData();
+onMounted(() => {
+  store.fetchVolunteerData();
 });
 </script>
 

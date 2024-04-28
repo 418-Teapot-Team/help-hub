@@ -7,11 +7,11 @@
       class="flex flex-col items-center md:flex-row justify-center md:items-start h-full gap-x-0 gap-y-8 md:gap-y-0 md:gap-x-8"
     >
       <div class="flex flex-col justify-start gap-y-8 h-full w-full md:w-fit">
-        <Avatar @onAvatarChange="isFilePopupOpen = true" />
-        <Stats />
+        <Avatar @onAvatarChange="isFilePopupOpen = true" :editable="true" />
+        <Stats :profileData="profileData" />
       </div>
       <div class="w-full h-full">
-        <Info />
+        <Info :profileData="profileData" />
       </div>
     </div>
 
@@ -30,8 +30,22 @@ import DragFile from '@/components/modals/DragFile.vue';
 import Avatar from '@/components/profile/Avatar.vue';
 import Info from '@/components/profile/Info.vue';
 import Spinner from '@/components/atoms/Spinner.vue';
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import Stats from '@/components/profile/Stats.vue';
+import { useProfileStore } from '@/stores/profile';
+import { AUTH_TOKEN_KEY } from '@/utils/constants';
+
+const profileStore = useProfileStore();
+const profileData = ref({});
+
+onBeforeMount(() => {
+  if (localStorage.getItem(AUTH_TOKEN_KEY)) {
+    profileStore.getMe().then((res) => {
+      profileData.value = res;
+      console.log(res);
+    });
+  }
+});
 
 const isFilePopupOpen = ref(false);
 const isLoading = ref(false);

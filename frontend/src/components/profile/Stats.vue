@@ -5,13 +5,13 @@
     <span class="text-xl font-semibold">Статистика</span>
     <div>
       <ul class="flex flex-col justify-start items-start gap-y-3">
-        <li
-          v-for="(item, idx) in statsData"
-          :key="idx"
-          class="flex flex-col justify-center gap-y-1"
-        >
-          <span class="text-base">{{ item.title }}:</span>
-          <span class="text-primary font-semibold">{{ item.value }}</span>
+        <li class="flex flex-col justify-center gap-y-1" v-if="profileData?.closed_requests">
+          <span class="text-base">Closed requests:</span>
+          <span class="text-primary font-semibold">{{ profileData?.closed_requests }}</span>
+        </li>
+        <li class="flex flex-col justify-center gap-y-1">
+          <span class="text-base">Using platform since:</span>
+          <span class="text-primary font-semibold">{{ profileData?.created_at }}</span>
         </li>
       </ul>
     </div>
@@ -19,12 +19,5 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const statsData = ref([
-  { title: 'Успішних допомог', value: '125' },
-  { title: 'Найбільше допоміг у категорії', value: 'Продукти харчування' },
-  { title: 'Рівент волонтера', value: 'Помагатор' },
-  { title: 'На сайті з', value: '20.04.2024' },
-]);
+defineProps(['profileData']);
 </script>
