@@ -1,18 +1,28 @@
 <template>
   <header class="h-20 px-4 py-2 flex items-center justify-between shadow-md">
     <div
-      class="absolute mt-[620px] md:mt-48 z-50 bg-white w-[157px] h-contain md:flex justify-center shadow-sm right-0"
+      class="absolute mt-[620px] md:mt-40 z-50 bg-white w-[157px] h-contain md:flex justify-center shadow-sm right-0"
       v-if="isProfileOpen"
     >
-      <div class="flex flex-col text-2xl text-center text-dark-text">
-        <router-link :to="profileUrl" class="py-6">
-          <span class="text-3xl font-semibold">Profile</span>
+      <div class="flex flex-col text-center gap-y-2">
+        <router-link :to="profileUrl" class="hover:text-primary">
+          <span class="font-semibold">Профіль</span>
         </router-link>
-        <router-link :to="requestUrl" v-if="volunteer === 'requestor'">Create request</router-link>
-        <router-link :to="applyUrl" v-if="volunteer === 'volunteer'">View request</router-link>
+        <span
+          v-if="role === 'requestor'"
+          class="hover:text-primary cursor-pointer"
+          @click="openCreate"
+          >Створити запит</span
+        >
+        <router-link :to="requestUrl" class="hover:text-primary" v-if="role === 'requestor'">
+          <span>Мої запити</span>
+        </router-link>
+        <router-link :to="'/my-applies'" v-if="role === 'volunteer'" class="hover:text-primary"
+          >Мої заявки</router-link
+        >
         <div class="bottom-0 pb-3 text-center">
           <button @click="handleSignOut">
-            <span class="border-t-2 text-red-700 font-semibold">Logout</span>
+            <span class="text-red-600 font-semibold hover:text-red-700">Вийти</span>
           </button>
         </div>
       </div>
@@ -43,9 +53,9 @@
       <div :class="isLoggedIn ? 'hidden md:flex flex-row items-center gap-x-4' : 'hidden'">
         <div class="flex flex-col items-center">
           <span class="font-bold text-white bg-primary p-1 text-center"
-            >{{ profileData.full_name }}
+            >{{ profileData?.full_name }}
           </span>
-          <span v-if="volunteer" class="text-dark-text">Volunteer</span>
+          <span v-if="role === 'volunteer'" class="text-dark-text">Волонтер</span>
         </div>
         <button @click="openProfileDropdown">
           <img class="w-14" src="/images/Profile.png" alt="" />
@@ -81,7 +91,7 @@
             <span class="font-bold text-white bg-primary p-2 text-center"
               >{{ profileData.full_name }}
             </span>
-            <span v-if="volunteer" class="text-dark-text pl-6 pr-6">Volunteer</span>
+            <span v-if="role === 'volunteer'" class="text-dark-text pl-6 pr-6">Волонтер</span>
             <button @click="openProfileDropdown">
               <img class="w-11 md:w-14" src="/images/Profile.png" alt="" />
             </button>
@@ -100,23 +110,24 @@ import { useRouter } from 'vue-router';
 import BurgerIconVue from '../icons/BurgerIcon.vue';
 const authStore = useAuthStore();
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
+import { useRequestsStore } from '@/stores/requests';
 
+const requestsStore = useRequestsStore();
 const isLoggedIn = computed(() => authStore.isLoggedIn);
 const profileData = computed(() => authStore.profileData);
 
-const volunteer = computed(() => authStore.profileData.role);
-console.log(volunteer);
+const role = computed(() => authStore.profileData?.role);
 
 const router = useRouter();
 
 function handleSignOut() {
   authStore.signOut();
   router.push('/');
+  isProfileOpen.value = false;
 }
 
-const requestUrl = '/my-requests';
-const applyUrl = '/my-applies';
-const profileUrl = '/me';
+const requestUrl = ref('/my-requests');
+const profileUrl = ref('/me');
 
 const headerLinks = ref([
   { label: 'Волонтеру', url: '/requests' },
@@ -137,5 +148,8 @@ function openRegisterPopup() {
 }
 function openLoginPopup() {
   authStore.setLoginPopupOpenStatus(true);
+}
+function openCreate() {
+  requestsStore.setCreateStatus(true);
 }
 </script>

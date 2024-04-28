@@ -52,6 +52,12 @@ const router = createRouter({
       name: 'my_requests',
       component: () => import('@/views/MyRequestsView.vue'),
     },
+
+    {
+      path: '/my-applies',
+      name: 'my_applies',
+      component: () => import('@/views/MyAppliesView.vue'),
+    },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/404',

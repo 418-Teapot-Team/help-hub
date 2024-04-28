@@ -1,12 +1,15 @@
 <template>
   <section class="m-6 bg-white shadow-md max-w-6xl">
-    <div class="flex gap-6 p-5">
+    <div
+      class="flex gap-6 p-5 cursor-pointer"
+      @click="$router.push(`/profile/volunteer/${volunteer.id}`)"
+    >
       <div class="md:flex-shrink-0 self-start">
-        <img class="object-contain w-16" :src="volunteer.image" />
+        <img class="object-contain w-16" src="/public/images/Profile.png" />
       </div>
       <div class="text-start text-wrap">
-        <p class="font-semibold text-3xl">{{ volunteer.name }}</p>
-        <p class="text-light-text font-semibold">{{ volunteer.location }}</p>
+        <p class="font-semibold text-3xl">{{ volunteer.full_name }}</p>
+        <p class="text-light-text font-semibold">{{ volunteer.phone }}</p>
       </div>
     </div>
   </section>

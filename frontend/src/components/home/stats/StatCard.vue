@@ -13,9 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const props = defineProps({
+defineProps({
   stat: {
     type: String,
     required: true,
@@ -29,10 +27,6 @@ const props = defineProps({
     required: false,
   },
 });
-
-const stat = ref(props.stat);
-const label = ref(props.label);
-const image = ref(props.image);
 </script>
 
 <style lang="scss" scoped></style>

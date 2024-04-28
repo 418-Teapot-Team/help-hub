@@ -7,13 +7,13 @@
     }"
   >
     <span class="text-xl font-semibold bg-primary px-2 rounded-full text-white" v-if="!editable">{{
-      role === 'volunteer' ? 'Volunteer' : 'Requestor'
+      role === 'volunteer' ? 'Волонтер' : 'Шукач'
     }}</span>
-    <span class="text-xl font-semibold" v-else>Avatar</span>
+    <span class="text-xl font-semibold" v-else>Фото</span>
     <div
       class="border rounded-full overflow-hidden w-[150px] h-[150px] flex items-center justify-center bg-white"
     >
-      <img src="/images/howWorkImg.webp" width="150" height="150" />
+      <img src="/public/images/Profile.png" width="150" height="150" />
     </div>
     <div class="absolute right-2 bottom-2 cursor-pointer" v-if="editable">
       <EditIcon class="w-6 h-6" @click="onAvatarChange" />

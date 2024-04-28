@@ -37,7 +37,6 @@ onMounted(() => {
   if (role?.length && id?.length) {
     profileStore.getProfie(role, id).then((res) => {
       profileData.value = res;
-      console.log(res);
     });
   } else {
     router.replace('/404');

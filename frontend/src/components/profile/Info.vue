@@ -55,7 +55,6 @@ watch(
   (val) => {
     const data = { ...val };
     formData.value = { ...data, name: data.full_name };
-    console.log(formData.value);
   }
 );
 

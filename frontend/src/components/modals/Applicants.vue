@@ -10,7 +10,7 @@
       <div @click="closeModal" class="absolute right-4 top-4 cursor-pointer hover:stroke-primary">
         <CloseIcon class="w-8 h-8" />
       </div>
-      <span>Applicants</span>
+      <span>Волонтери</span>
       <div
         class="flex flex-col justify-start gap-y-4 items-start max-h-[380px] overflow-auto w-full"
       >
@@ -50,7 +50,7 @@ import CloseIcon from '@/components/icons/CloseIcon.vue';
 import { useRequestsStore } from '@/stores/requests';
 
 const requestsStore = useRequestsStore();
-const props = defineProps(['reponses', 'id']);
+const props = defineProps(['responses', 'id']);
 
 const emit = defineEmits(['closeModal']);
 

@@ -17,7 +17,7 @@
         <div class="w-full flex flex-col justify-center gap-y-2">
           <AppPlainInput type="text" label="Ім'я*" name="name" />
           <AppPhoneInput label="Телефон*" />
-          <AppPlainInput type="email" label="E-mailі*" name="email" />
+          <AppPlainInput type="email" label="E-mail*" name="email" />
           <AppPlainInput type="password" label="Пароль*" name="password" />
           <AppPlainInput type="password" label="Підтвердження паролю*" name="password_confirm" />
           <div class="pt-2 flex flex-col justify-start items-start gap-y-2">

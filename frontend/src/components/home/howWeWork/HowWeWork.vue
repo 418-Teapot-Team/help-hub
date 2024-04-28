@@ -31,9 +31,9 @@
 import { ref } from 'vue';
 
 const works = ref([
-  { label: 'Tak i pracuemo' },
-  { label: 'Pracuemo azh pilyka letit' },
-  { label: 'Tak tezh pracuemo' },
-  { label: 'Jak tilki ne pracuemo...' },
+  { label: 'Зареєструйтесь' },
+  { label: 'Створіть заявку' },
+  { label: 'Оберіть волонтера' },
+  { label: 'Отримайте допомогу' },
 ]);
 </script>

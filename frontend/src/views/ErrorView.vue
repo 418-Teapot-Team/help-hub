@@ -6,11 +6,11 @@
     <img class="w-20 h-10" src="/public/images/HandToHandLogo.webp" />
     <h1 class="text-8xl sm:text-[248px] font-semibold text-primary">404</h1>
     <div class="flex flex-col justify-start items-center">
-      <p class="text-gray-500">Page you are looking for is nout found.</p>
-      <p class="text-gray-500">Please return to home page.</p>
+      <p class="text-gray-500">Сторінку яку ви шукаєте не знайдено.</p>
+      <p class="text-gray-500">Будь ласка поверніться на головну.</p>
     </div>
 
-    <AppButton type="button" @on-click="goHome" text="Homepage" is-bold />
+    <AppButton type="button" @on-click="goHome" text="На головну" is-bold />
   </section>
 </template>
 <script setup>

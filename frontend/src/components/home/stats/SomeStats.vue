@@ -25,13 +25,35 @@
 <script setup>
 import StatCard from '@/components/home/stats/StatCard.vue';
 import { ref, onMounted } from 'vue';
-// import { useStatsStore } from '@/stores/stats.js';
+import { useRequestsStore } from '@/stores/requests';
 
-// const store = useStatsStore();
+const requestsStore = useRequestsStore();
+const stats = ref({});
 
-onMounted(async () => {
-  // await store.fetchStats();
-  // console.log(store.data)
+onMounted(() => {
+  requestsStore.getStats().then((res) => {
+    stats.value = res;
+    cards.value = cards.value.map((item) => {
+      if (item.label === 'Заявок') {
+        return {
+          ...item,
+          stat: res.amount_requests?.toString(),
+        };
+      }
+      if (item.label === 'Волонтерів') {
+        return {
+          ...item,
+          stat: res.amount_volunteers?.toString(),
+        };
+      }
+      if (item.label === 'Виконаних завдань') {
+        return {
+          ...item,
+          stat: res.amount_done_requests?.toString(),
+        };
+      }
+    });
+  });
 });
 
 const cards = ref([

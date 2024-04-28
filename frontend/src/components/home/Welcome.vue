@@ -23,8 +23,8 @@
               <span class="text-light-text text-xl text-center font-semibold"
                 >Допомагайте тим, хто цього потребує, вже сьогодні!</span
               >
-              <AppButton text="Розмістити заявку" isBold class="mt-4" />
-              <button class="w-fit underline">Стати волонтером</button>
+              <AppButton text="Розмістити заявку" isBold class="mt-4" @on-click="createRequest" />
+              <button class="w-fit underline" @click="becomeVolunteer">Стати волонтером</button>
             </div>
           </div>
         </div>
@@ -52,8 +52,15 @@
                   >Допомагайте тим, хто цього потребує, вже сьогодні!</span
                 >
                 <div class="flex flex-row gap-x-6 pt-16">
-                  <AppButton text="Розмістити заявку" isBold class="xl:py-4 xl:px-5 md:py-3" />
-                  <button class="w-fit underline font-semibold text-lg">Стати волонтером</button>
+                  <AppButton
+                    text="Розмістити заявку"
+                    @on-click="createRequest"
+                    isBold
+                    class="xl:py-4 xl:px-5 md:py-3"
+                  />
+                  <button class="w-fit underline font-semibold text-lg" @click="becomeVolunteer">
+                    Стати волонтером
+                  </button>
                 </div>
               </div>
             </div>
@@ -70,4 +77,35 @@
 
 <script setup>
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
+import { useAuthStore } from '@/stores/auth';
+import { useRequestsStore } from '@/stores/requests';
+import { computed } from 'vue';
+import { useToast } from 'vue-toast-notification';
+
+const authStore = useAuthStore();
+const requestsStore = useRequestsStore();
+const $toast = useToast();
+
+const isLoggedIn = computed(() => authStore.isLoggedIn);
+const role = computed(() => authStore.profileData?.role);
+
+function createRequest() {
+  if (isLoggedIn.value && role?.value === 'requestor') {
+    requestsStore.setCreateStatus(true);
+  } else {
+    $toast.info('Увійдіть або зареєструйтесь як шукач');
+    authStore.setLoginPopupOpenStatus(true);
+  }
+}
+
+function becomeVolunteer() {
+  if (role?.value === 'volunteer' && isLoggedIn.value) {
+    $toast.info('Ви уже є волонтером;)');
+  } else if (isLoggedIn.value && role.value !== 'volunteer') {
+    $toast.info('Увійдіть або зареєструйтесь як волонтер');
+    authStore.setLoginPopupOpenStatus(true);
+  } else {
+    authStore.setLoginPopupOpenStatus(true);
+  }
+}
 </script>

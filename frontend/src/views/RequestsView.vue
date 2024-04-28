@@ -1,9 +1,8 @@
 <template>
-
-  <div class="bg-section-secondary w-full h-screenr flex justify-center">
-    <div class="flex justify-center h-screen gap-x-4 container">
+  <div class="bg-section-secondary w-full min-h-screen flex justify-center">
+    <div class="flex justify-center gap-x-4 container pb-10">
       <Filters :filters="filtersData" @applyFilters="applyFilters" />
-      <RequestList :data="requestsData" lass="overflow-auto pb-10" />
+      <RequestList :data="requestsData" lass="" />
     </div>
   </div>
 </template>

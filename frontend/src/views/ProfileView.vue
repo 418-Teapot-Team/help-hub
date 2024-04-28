@@ -42,7 +42,6 @@ onBeforeMount(() => {
   if (localStorage.getItem(AUTH_TOKEN_KEY)) {
     profileStore.getMe().then((res) => {
       profileData.value = res;
-      console.log(res);
     });
   }
 });

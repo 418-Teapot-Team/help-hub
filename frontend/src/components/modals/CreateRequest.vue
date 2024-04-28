@@ -13,90 +13,50 @@
         <div @click="closeModal" class="absolute right-4 top-4 cursor-pointer hover:stroke-primary">
           <CloseIcon class="w-6 h-6" />
         </div>
-        <h1 class="font-semibold text-2xl">New request</h1>
+        <h1 class="font-semibold text-2xl">Новий запит</h1>
         <div class="w-full flex flex-col justify-center gap-y-2">
-          <AppPlainInput type="text" label="Title" name="title" />
+          <AppPlainInput type="text" label="Назва" name="title" />
           <div>
-            <span>City</span>
-            <AppSelectInput v-model="city" label="label" dataKey="id" :options="cities" />
+            <span>Місто</span>
+            <AppSelectInput v-model="city" label="name" dataKey="id" :options="cities" />
           </div>
           <div>
-            <span>Category</span>
-            <AppSelectInput
-              v-model="category"
-              :isMultiple="true"
-              :max="3"
-              label="label"
-              dataKey="id"
-              :options="categories"
-            />
+            <span>Категорія</span>
+            <AppSelectInput v-model="category" label="name" dataKey="id" :options="categories" />
           </div>
-          <AppTextarea label="Description" name="description" />
+          <AppTextarea label="Опис" name="description" />
         </div>
         <div class="w-full flex flex-col justify-start items-center gap-y-2">
-          <AppButton class="w-full" type="submit" text="Publish" is-bold />
+          <AppButton class="w-full" type="submit" text="Опублікувати" is-bold />
         </div>
       </vee-form>
     </div>
   </Teleport>
 </template>
 <script setup>
-import { reactive, ref } from 'vue';
-import { useAuthStore } from '@/stores/auth';
+import { onBeforeMount, reactive, ref } from 'vue';
 import AppButton from '@/components/atoms/buttons/AppButton.vue';
 import AppPlainInput from '@/components/atoms/inputs/AppPlainInput.vue';
 import CloseIcon from '@/components/icons/CloseIcon.vue';
 import AppTextarea from '../atoms/inputs/AppTextarea.vue';
 import AppSelectInput from '../atoms/inputs/AppSelectInput.vue';
+import { useRequestsStore } from '@/stores/requests';
 
-const emit = defineEmits(['onSubmit']);
-
-const authStore = useAuthStore();
+const requestsStore = useRequestsStore();
 
 const city = ref(null);
-const category = ref([]);
+const category = ref(null);
 
-const cities = ref([
-  {
-    label: 'Kyiv',
-    id: 'kyiv',
-  },
-  {
-    label: 'Lviv',
-    id: 'lviv',
-  },
-  {
-    label: 'Khmelnytskyi',
-    id: 'khmelnytskyi',
-  },
-  {
-    label: 'Volodymyr',
-    id: 'volodymyr',
-  },
-  {
-    label: 'Vinnytisa',
-    id: 'vinnytsia',
-  },
-]);
+const cities = ref([]);
 
-const categories = ref([
-  {
-    label: 'Medicine',
-    id: 'meds',
-  },
-  {
-    label: 'Food',
-    id: 'food',
-  },
-  {
-    label: 'Military',
-    id: 'military',
-  },
-  {
-    label: 'Other',
-    id: 'other',
-  },
-]);
+const categories = ref([]);
+
+onBeforeMount(() => {
+  requestsStore.getCategoriesAndCities().then((res) => {
+    cities.value = res.cities;
+    categories.value = res.categories;
+  });
+});
 
 const schema = reactive({
   title: 'required|min:3|max:150',
@@ -104,13 +64,18 @@ const schema = reactive({
 });
 
 function onSubmit(values) {
-  emit('onSubmit');
-  console.log({
-    values,
-  });
+  requestsStore
+    .createReq({
+      ...values,
+      city: city.value,
+      category: category.value,
+    })
+    .then(() => {
+      requestsStore.setCreateStatus(false);
+    });
 }
 
 function closeModal() {
-  authStore.setRegisterPopupOpenStatus(false);
+  requestsStore.setCreateStatus(false);
 }
 </script>

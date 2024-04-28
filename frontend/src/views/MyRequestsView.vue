@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-section-secondary w-full h-screenr flex justify-center">
-    <div class="flex justify-center h-screen gap-x-4 container">
-      <RequestList :data="requestsData" lass="overflow-auto pb-10" :isMy="true" />
+  <div class="bg-section-secondary w-full flex justify-center min-h-screen">
+    <div class="flex justify-center h-fit sm:container">
+      <RequestList :data="requestsData" class="pb-10" :isMy="true" />
     </div>
   </div>
 </template>

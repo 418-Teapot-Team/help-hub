@@ -1,9 +1,15 @@
 <template>
   <div class="flex flex-col justify-start mt-20 gap-y-4 w-full">
-    <RequestCard v-for="item in data" :key="`req_${item.id}`" :data="item" :isMyRequest="isMy" />
+    <RequestCard
+      v-for="item in data"
+      :key="`req_${item.id}`"
+      :data="item"
+      :isMyRequest="isMy"
+      :isMyApply="isApp"
+    />
   </div>
 </template>
 <script setup>
 import RequestCard from './RequestCard.vue';
-defineProps(['data', 'isMy']);
+defineProps(['data', 'isMy', 'isApp']);
 </script>
