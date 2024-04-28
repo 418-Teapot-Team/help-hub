@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col justify-start mt-20">
-    <SearchBar />
+    <SearchBar class="sticky top-0" />
     <FeedCard v-for="(volunteer, index) in paginatedVolunteers" :key="index" :data="volunteer" />
     <div
       v-if="store.volunteers.length > itemsPerPage"

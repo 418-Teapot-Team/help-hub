@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="bg-section-secondary h-full flex flex-col w-screen">
+    <div class="bg-section-secondary h-full flex flex-col w-screen overflow-hidden">
       <!-- small screen -->
       <div class="w-full h-[calc(100vh-80px)] flex lg:hidden justify-center px-10">
         <div

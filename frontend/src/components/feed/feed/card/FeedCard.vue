@@ -6,8 +6,7 @@
       </div>
       <div class="text-start text-wrap">
         <p class="font-semibold text-3xl">{{ volunteer.name }}</p>
-        <p>Зіроньки</p>
-        <p class="opacity-75 font-semibold">{{ volunteer.location }}</p>
+        <p class="text-light-text font-semibold">{{ volunteer.location }}</p>
         <div class="mb-3 mt-2">
           <Tag v-for="(tag, index) in volunteer.tags" :key="index" :text="tag" />
         </div>
