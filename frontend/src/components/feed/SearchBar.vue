@@ -1,19 +1,14 @@
 <template>
   <section>
-    <div class="flex justify-center">
+    <div class="flex justify-center gap-2">
       <!-- TODO: add debounce for search-->
-      <div class="border-2 border-primary bg-white rounded mr-2 w-3/5">
-        <input
-          v-model="searchTerm"
-          type="text"
-          placeholder="Search volunteers..."
-          class="m-2 rounded"
-        />
+      <div class="border-2 border-primary bg-white w-full">
+        <input v-model="searchTerm" type="text" placeholder="Search volunteers..." class="m-2" />
       </div>
       <!-- TODO: send the search request to server -->
       <button
         @click="search"
-        class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+        class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4"
       >
         Search
       </button>

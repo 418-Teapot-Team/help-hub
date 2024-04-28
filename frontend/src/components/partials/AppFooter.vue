@@ -36,10 +36,11 @@
 import { ref } from 'vue';
 
 const footerLinks = ref([
-  { label: 'Пропозиції', url: '/' },
-  { label: 'Волонтерам', url: '/' },
-  { label: 'Замовникам', url: '/' },
-  { label: 'Реєстрація', url: '/' },
-  { label: 'Вхід', url: '/' },
+  // TODO: the actual links
+  { label: 'Пропозиції (?)', url: '/' },
+  { label: 'Волонтерам', url: '/profile' },
+  { label: 'Одержувачам', url: '/findvolunteer' },
+  { label: 'Реєстрація', url: '/profile' },
+  { label: 'Вхід', url: '/profile' },
 ]);
 </script>
