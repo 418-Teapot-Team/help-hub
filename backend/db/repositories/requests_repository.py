@@ -39,8 +39,9 @@ class RequestsRepository:
 
     @staticmethod
     def get_by_requestor_id(requestor_id: str):
-        return Request.query.filter_by(requestor_id=requestor_id).all()
+        return Request.query.filter_by(requestor_id=requestor_id, is_active=True).all()
 
     @staticmethod
     def get_appliers(request_id: str):
+        print("request_id", request_id)
         return RequestResponses.query.filter_by(request_id=request_id, status="PENDING").all()

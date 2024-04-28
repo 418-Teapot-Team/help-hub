@@ -39,7 +39,8 @@ def apply_request():
     data = request.get_json()
     if RequestsRepository.check_if_applied(current_user["user_id"], data["request_id"]):
         return jsonify(message="You have already applied to this request"), 400
-    RequestsRepository.apply(data["request_id"], current_user["user_id"])
+    print(data["request_id"], current_user["user_id"])
+    RequestsRepository.apply(current_user["user_id"], data["request_id"])
     return jsonify(message="Successfully applied to request")
 
 
@@ -120,7 +121,7 @@ def my_requests():
                         "status": response.status,
                         "created_at": response.created_at.strftime("%d/%m/%Y"),
                     }
-                    for response in request.responses
+                    for response in RequestsRepository.get_appliers(request.id)
                 ],
             }
             for request in requests

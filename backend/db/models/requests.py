@@ -14,7 +14,7 @@ class Request(db.Model):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), server_onupdate=db.func.now())
 
-    responses = db.relationship("RequestResponses", backref="request", lazy=True)
+    # responses = db.relationship("RequestResponses", backref="request_id", lazy=True)
     category = db.relationship("Category", lazy=True)
     city = db.relationship("City", lazy=True)
     requestor = db.relationship("Requestor", lazy=True)
