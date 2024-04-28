@@ -11,7 +11,7 @@
           <Tag v-for="(tag, index) in volunteer.tags" :key="index" :text="tag" />
         </div>
 
-        <p class="opacity-75 font-semibold">{{ volunteer.description }}</p>
+        <p class="font-semibold">{{ volunteer.description }}</p>
       </div>
     </div>
   </section>
