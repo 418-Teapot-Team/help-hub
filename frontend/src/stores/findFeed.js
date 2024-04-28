@@ -28,6 +28,41 @@ export const useFindFeedStore = defineStore('findFeed', () => {
       name: 'Mykola Balii',
       location: 'Хмельницька обл. м. Хмельницький',
     },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
+    {
+      image: '/images/Profile.png',
+      name: 'Mykola Balii',
+      location: 'Хмельницька обл. м. Хмельницький',
+    },
   ]);
 
   async function fetchVolunteerData() {
