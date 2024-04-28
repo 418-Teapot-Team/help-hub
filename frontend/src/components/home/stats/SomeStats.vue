@@ -11,9 +11,9 @@
       </div>
 
       <div
-        class="flex mx-auto text-lg justify-center py-4 px-2 bg-inherit sm:w-3/4 text-center mt-2"
+        class="flex mx-auto text-lg justify-center py-4 px-2 bg-inherit sm:w-3/4 text-center sm:mt-2"
       >
-        <span
+        <span class="font-semibold text-xl"
           >Hand to Hand створена щоб усі могли знайти допомого або ж проявити себе та допомогти
           іншим, тому ми сподіваємося, що наведена статистика буде невпинно зростати.</span
         >
