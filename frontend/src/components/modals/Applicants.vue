@@ -16,229 +16,25 @@
       >
         <div
           class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
+          v-for="item in responses"
+          :key="`reqst_${item.id}`"
         >
           <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
+            <div
+              class="rounded-full h-10 w-10 overflow-hidden border border-black/20"
+              @click="$router.push(`/profile/volunteer/${item?.volunteer.id}`)"
             >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
               <img src="/public/images/howWorkImg.webp" />
             </div>
             <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
+              <span class="text-sm font-semibold">{{ item?.volunteer?.full_name }}</span>
+              <span class="text-xs text-gray-500">{{ item?.volunteer?.phone }}</span>
             </div>
           </div>
           <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
             <button
               class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-        <div
-          class="px-4 py-2 lg:py-1 border border-black/20 shadow-sm flex flex-col lg:flex-row justify-between w-full h-fit lg:h-16 gap-y-4"
-        >
-          <div class="flex flex-col lg:flex-row justify-start items-center gap-2">
-            <div class="rounded-full h-10 w-10 overflow-hidden border border-black/20">
-              <img src="/public/images/howWorkImg.webp" />
-            </div>
-            <div class="flex flex-col justify-center items-center lg:items-start gap-y-0.5">
-              <span class="text-sm font-semibold">John Doe</span>
-              <span class="text-xs text-gray-500">+38(067)-777-77-77</span>
-            </div>
-          </div>
-          <div class="flex justify-center items-center gap-x-3">
-            <button class="text-white bg-red-500 px-4 h-8 shadow-sm hover:bg-red-600 duration-200">
-              Deny
-            </button>
-            <button
-              class="text-white bg-green-500 px-4 h-8 shadow-sm hover:bg-green-600 duration-200"
+              @click="confirmREquestor(item?.volunteer?.id)"
             >
               Confirm
             </button>
@@ -251,10 +47,20 @@
 
 <script setup>
 import CloseIcon from '@/components/icons/CloseIcon.vue';
+import { useRequestsStore } from '@/stores/requests';
+
+const requestsStore = useRequestsStore();
+const props = defineProps(['reponses', 'id']);
 
 const emit = defineEmits(['closeModal']);
 
 function closeModal() {
   emit('closeModal');
+}
+
+function confirmREquestor(id) {
+  requestsStore.approve(id, props.id).then(() => {
+    emit('closeModal');
+  });
 }
 </script>
