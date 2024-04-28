@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . .
 
-RUN echo "VITE_BASE_API=http://13.48.114.197:8080/" > .env
+RUN echo "VITE_BASE_API=http://35.198.101.69:8001/api" > .env
 
 RUN npm run build
 

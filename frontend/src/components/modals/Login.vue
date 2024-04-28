@@ -45,8 +45,7 @@ import AppPlainInput from '@/components/atoms/inputs/AppPlainInput.vue';
 import AppPhoneInput from '@/components/atoms/inputs/AppPhoneInput.vue';
 import CloseIcon from '@/components/icons/CloseIcon.vue';
 import AppCheckboxInput from '@/components/atoms/inputs/AppCheckboxInput.vue';
-
-const emit = defineEmits(['onSubmit']);
+import { AUTH_TOKEN_KEY } from '@/utils/constants';
 
 const authStore = useAuthStore();
 
@@ -57,12 +56,15 @@ const schema = reactive({
 
 const isVolunteer = ref(false);
 
-function onSubmit(values) {
-  emit('onSubmit');
-  console.log({
-    values,
-    isVolunteer: isVolunteer.value,
+async function onSubmit(values) {
+  await authStore.signIn({
+    phone: values.phone,
+    password: values.password,
+    role: isVolunteer.value ? 'volunteer' : 'requestor',
   });
+  if (localStorage.getItem(AUTH_TOKEN_KEY)) {
+    authStore.whoAmI();
+  }
 }
 
 function closeModal() {
