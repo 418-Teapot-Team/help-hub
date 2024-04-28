@@ -1,5 +1,6 @@
 from db.models import Request, Category, RequestResponses
 from db import db
+from sqlalchemy import or_
 
 
 class RequestsRepository:
@@ -13,8 +14,13 @@ class RequestsRepository:
         return request
 
     @staticmethod
-    def get_all():
-        return Request.query.all()
+    def get_all(filter_by=None, search=None):
+        query = Request.query
+        if filter_by:
+            query = query.filter_by(**filter_by)
+        if search:
+            query = query.filter(or_(Request.title.ilike(f"%{search}%"), Request.description.like(f"%{search}%")))
+        return query.all()
 
     @staticmethod
     def apply(volunteer_id: str, request_id: str):
