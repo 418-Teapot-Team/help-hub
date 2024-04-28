@@ -14,7 +14,6 @@ import FeedCard from '@/components/feed/card/FeedCard.vue';
 import SearchBar from '@/components/feed/SearchBar.vue';
 
 const store = useFindFeedStore();
-
 onMounted(async () => {
   await store.fetchVolunteerData();
 });

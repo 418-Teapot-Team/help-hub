@@ -3,35 +3,73 @@
     <div class="mb-2">
       <button class="w-full flex" @click="toggleFilter">
         <label class="text-xl font-semibold">{{ title }}</label>
-        <span class="ml-1 text-gray-500" v-if="selectedFiltersLength > 0">
-          ({{ selectedFiltersLength }})
+        <span class="ml-1 text-gray-500" v-if="getFiltersCount() > 0">
+          ({{ getFiltersCount() }})
         </span>
         <ArrowIcon class="duration-200" :class="{ '-rotate-90 ': !isOpen }" />
       </button>
     </div>
-    <div v-if="isOpen">
-      <div v-for="(item, idx) in filters" :key="idx" class="mb-2 pl-2 flex">
-        <AppCheckboxInput :id="idx + 1" v-model="item.isSelected" class="mr-2" />
-        <label :for="idx">{{ item.name }}</label>
+    <div v-if="isOpen && filters?.values">
+      <div v-for="(item, idx) in filters.values" :key="idx" class="mb-2 pl-2 flex">
+        <div class="flex justify-start items-center relative gap-x-2">
+          <input
+            name="item.title"
+            type="checkbox"
+            class="checkbox cursor-pointer border border-solid border-black/20 checked:border-primary w-5 h-5 ring-0 bg-white transition duration-75 disabled:pointer-events-none disabled:bg-gray-50 disabled:text-gray-50 disabled:checked:bg-current disabled:checked:text-gray-400 text-white ring-gray-950/10 checked:bg-primary focus:ring-primary checked:focus:ring-primary/50"
+            :checked="isFilterChosen(filters.key, item.id)"
+            @click="pickFilterOption(filters.key, item.id)"
+          />
+          <label>{{ item.name }}</label>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, computed, ref } from 'vue';
-import AppCheckboxInput from '@/components/atoms/inputs/AppCheckboxInput.vue';
+import { defineProps, ref } from 'vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
+import { useFiltersStore } from '@/stores/filters';
+
+const filtersStore = useFiltersStore();
 
 const { title, filters } = defineProps(['title', 'filters']);
 
-const selectedFiltersLength = computed(() => {
-  const selectedFilters = filters.filter((item) => item.isSelected);
-  return selectedFilters.length;
-});
+function isFilterChosen(key, slug) {
+  return filtersStore.isActive(key, slug);
+}
+
+function pickFilterOption(key, slug) {
+  if (filtersStore.isActive(key, slug)) {
+    filtersStore.removeFilter(key, slug);
+  } else {
+    filtersStore.addFilter(key, slug);
+  }
+}
 
 const isOpen = ref(true);
 const toggleFilter = () => {
   isOpen.value = !isOpen.value;
 };
+
+function getFiltersCount() {
+  if (filters) {
+    let counter = 0;
+    for (let value of filters.values) {
+      if (filtersStore.isActive(filters.key, value.id)) {
+        counter++;
+      }
+    }
+    return counter;
+  }
+  return 0;
+}
 </script>
+<style lang="scss" scoped>
+.checkbox:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' fill='%23ffffff' viewBox='-5.5 -6.5 20 20'%3E%3Cpath d='M10.703-3.205a1.65 1.65 0 0 1 2.299.018c.309.3.483.708.497 1.138.009.43-.147.846-.438 1.163L4.254 10.132a1.657 1.657 0 0 1-2.384.045l-5.843-5.844a1.635 1.635 0 0 1-.383-.536 1.683 1.683 0 0 1-.144-.646 1.667 1.667 0 0 1 .485-1.2c.158-.158.344-.282.551-.364a1.641 1.641 0 0 1 1.294.022c.204.091.386.222.538.384l4.623 4.62 7.668-9.768c.014-.018.026-.034.044-.05z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position: center;
+}
+</style>
